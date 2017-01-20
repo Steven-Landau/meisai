@@ -27,7 +27,7 @@ namespace meisai
         WinGovernment winGovernment;
         int nowDay = 0;
 
-        public MainWindow()
+        public MainWindow() 
         {
             InitializeComponent();
             government = new Government();
