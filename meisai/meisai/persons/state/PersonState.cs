@@ -1,4 +1,5 @@
-﻿using System;
+﻿using meisai.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,14 +31,9 @@ namespace meisai.persons.state
         }
         public void Death(double Deathrate_)
         {
-            Random ran = new Random(2);
-            int RandKeyInt = ran.Next(1, 10000);
-            double RandKey = RandKeyInt / 10000.0;
-            //MessageBox.Show("ran:" + RandKey);
-            if (RandKey < Deathrate_)
-            {
-                Die();
-            }
+            double RandKey = RandomGen.getDouble();
+            //Console.WriteLine(RandKey);
+            if (RandKey < Deathrate_) Die();
         }
         public int funage()
         {
@@ -46,13 +42,14 @@ namespace meisai.persons.state
 
         PersonEducation education = new PersonEducation();
 
-        public void deltaTAfter(PersonParameter personparameter, int day = 365)
+        public void deltaTAfter(int day = 365)
         {
             Age++;//年龄增加
-            Deathrate = (int)
-           (personparameter.basicdeathrate +//基础死亡率
-           personparameter.age_deathrate *
-           Math.Pow((Age - personparameter.least_age_deathrate), 2));//随年龄而变的死亡率*/
+            Deathrate = AllParameter.basicdeathrate +//基础死亡率
+                    AllParameter.age_deathrate *
+                    Math.Pow((Age - AllParameter.least_age_deathrate), 2);
+                   //随年龄而变的死亡率
+            
         }
 
     }

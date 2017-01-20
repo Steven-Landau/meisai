@@ -54,7 +54,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="persons\PersonParameter.cs" />
+    <Compile Include="Tools\AllParameter.cs" />
+    <Compile Include="Tools\RandomGen.cs" />
     <Compile Include="windowset\WinGovernment.xaml.cs">
       <DependentUpon>WinGovernment.xaml</DependentUpon>
     </Compile>

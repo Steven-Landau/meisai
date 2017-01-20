@@ -1,4 +1,5 @@
 ﻿using meisai.persons.state;
+using meisai.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,26 +22,26 @@ namespace meisai.persons.money
         public int welfare = 0;
         public int tax = 0;//交税
         //每一段时间调用以下函数，个人挣钱和花钱
-        public void deltaTAfter(PersonParameter personparameter)
+        public void deltaTAfter(int day)
         {
             //挣钱 + 花钱
             //money += product()-tax;
-            if (money > personparameter.basicconsumtion)
-                money -= personparameter.basicconsumtion;//判定这人有没有钱
+            if (money > AllParameter.basicconsumtion)
+                money -= AllParameter.basicconsumtion;//判定这人有没有钱
             else
             {
-                welfare = -money + personparameter.basicconsumtion;
+                welfare = -money + AllParameter.basicconsumtion;
                 money = 0;
-            }//没钱的话政府给福利
-
+            }
+            //没钱的话政府给福利
         }
         //生产
-        public int product(PersonState state, PersonEducation education, PersonParameter personparameter, int day = 365)
+        public int product(PersonState state, PersonEducation education, int day = 365)
         {
             int product_;
-            if (state.Age > personparameter.graduateage)
+            if (state.Age > AllParameter.graduateage)
             {
-                product_ = state.funage() * education.EduLevel * personparameter.productparameter * producttendency;
+                product_ = state.funage() * education.EduLevel * AllParameter.productparameter * producttendency;
             }
             else product_ = 0;
             product_ *= (int)(Math.Sqrt(money));
@@ -48,20 +49,20 @@ namespace meisai.persons.money
             return product_;
         }
         //消费
-        public int consumption(PersonState state, PersonEducation education, PersonParameter personparameter)
+        public int consumption(PersonState state, PersonEducation education)
         {
             int consumption_;
-            if (state.Age < personparameter.graduateage)
+            if (state.Age < AllParameter.graduateage)
             {
-                consumption_ = personparameter.basicconsumtion;
+                consumption_ = AllParameter.basicconsumtion;
             }
-            else if (state.Age > personparameter.retireage)
+            else if (state.Age > AllParameter.retireage)
             {
-                consumption_ = personparameter.basicconsumtion;
+                consumption_ = AllParameter.basicconsumtion;
             }
             else
             {
-                consumption_ = personparameter.basicconsumtion + consumetendency * product(state, education, personparameter) * (1 - taxrate);
+                consumption_ = AllParameter.basicconsumtion + consumetendency * product(state, education) * (1 - taxrate);
             }
             return consumption_;
         }

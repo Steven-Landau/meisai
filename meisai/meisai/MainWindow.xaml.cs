@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using meisai.Tools;
 
 namespace meisai 
 {
@@ -30,6 +31,7 @@ namespace meisai
         public MainWindow() 
         {
             InitializeComponent();
+            RandomGen.Initiate();
             government = new Government();
             winGovernment = new WinGovernment(government);
             winGovernment.Show();
