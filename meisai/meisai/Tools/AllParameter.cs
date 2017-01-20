@@ -29,7 +29,11 @@ namespace meisai.Tools
         #region 挣钱
         //静态的挣钱系数
         public static double productparameter = 0.08;
-        
+        //倾向与性别和人种有关
+        public static double consumetendency(Race race, Gender gender)
+        {
+            return 0.99;
+        }
         //生产倾向关于种族的关系
         public static double producttendency(Race race)
         {

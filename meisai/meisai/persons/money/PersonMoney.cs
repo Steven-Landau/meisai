@@ -17,7 +17,6 @@ namespace meisai.persons.money
         //为简化起见，先存一个money，以后可以增加贷款信用等等
         public int money = AllParameter.init_money;
         public double producttendency = 0;
-        int consumetendency = 1;//倾向与性别和人种有关
         public int taxrate = 0;
         public int welfare = 0;
         public int tax = 0;//交税
@@ -70,8 +69,9 @@ namespace meisai.persons.money
             }
             else
             {
-                consumption_ = AllParameter.basicconsumtion + consumetendency * 
-                    (product(state) - AllParameter.basicconsumtion) * (1 - taxrate);
+                consumption_ = (int)(AllParameter.basicconsumtion + 
+                    AllParameter.consumetendency(state.race, state.gender) * 
+                    (product(state) - AllParameter.basicconsumtion) * (1 - taxrate));
             }
             //Console.WriteLine(consumption_);
             return consumption_;
