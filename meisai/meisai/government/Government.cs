@@ -25,6 +25,7 @@ namespace meisai.government
         {
             //先进行政策范围内的事情：
             //再遍历每个人实现个人的改变，包括赚钱等等
+           
             foreach (Person person in personList)
             {
                 person.deltaTAfter(day);

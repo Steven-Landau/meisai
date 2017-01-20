@@ -23,9 +23,9 @@ namespace meisai.persons
         //这个是每一段时间以后调用一下，人可以挣钱，花钱，交换钱，交友，生子等等
         public void deltaTAfter(int day = 365)
         {
-            //state.deltaTAfter(day);
+            state.deltaTAfter(day);
             money.deltaTAfter(state, day);
-            state.Death(state.Deathrate);
+            state.Death(state.Deathrate(state.Age));
 
         }
         public int getMyMoney() => money.money;

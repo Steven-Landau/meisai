@@ -64,11 +64,8 @@ namespace meisai.persons.state
         }
         public void deltaTAfter(int day = 365)
         {
-            Age++;//年龄增加
-            //随年龄而变的死亡率
-            Deathrate = AllParameter.basicdeathrate +
-                AllParameter.age_deathrate *
-                Math.Pow((Age - AllParameter.least_age_deathrate), 2);
+            Age++;
+            //年龄增加
         }
 
     }
