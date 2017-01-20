@@ -34,6 +34,12 @@ namespace meisai.Tools
         //倾向与性别和人种有关
         public static double consumetendency(Race race, Gender gender)
         {
+            double t = 1;
+            switch(race)
+            {
+                case 
+            }
+
             return 0.99;
         }
         //生产倾向关于种族的关系

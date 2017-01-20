@@ -14,7 +14,7 @@ namespace meisai.persons.state
     public class PersonState
     {
         //性别
-        public Gender gender = Gender.NULL;
+        public Gender gender = Gender.Male;
         //种族
         public Race race = Race.Lazy;
         //年龄
@@ -49,7 +49,7 @@ namespace meisai.persons.state
         }
 
     }
-    public enum Gender { NULL, Male, Female }
+    public enum Gender {Male, Female }
     public enum Race { Creative, Lazy }
     //技能状态，包括技能水平和类型等
     public class PersonEducation
