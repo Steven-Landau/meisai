@@ -20,7 +20,30 @@ namespace meisai.persons.state
         //年龄
         public int Age = 25;
         //死亡率及状态（是否将要死亡）
-        public double Deathrate = 0.01;
+        public double Deathrate(int Age) {
+            if(Age <= 1)
+                return 0.008;
+            else if(Age <= 4)
+                return 0.00029;
+            else if(Age <= 14)
+                return 0.00015;
+            else if(Age <= 24)
+                return 0.0008;
+            else if(Age <= 34)
+                return 0.00104;
+            else if(Age <= 44)
+                return 0.00184;
+            else if(Age <= 54)
+                return 0.0042;
+            else if(Age <= 64)
+                return 0.00877;
+            else if(Age <= 74)
+                return 0.02011;
+            else if(Age <= 84)
+                return 0.05011;
+            else
+                return 0.1296;
+        }
         public bool IfWillDie = false;
         //教育程度
         public PersonEducation education = new PersonEducation();
