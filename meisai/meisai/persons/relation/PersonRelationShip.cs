@@ -13,7 +13,7 @@ namespace meisai.persons.relation
     {
         List<SingleRelation> relations = new List<SingleRelation>();
     }
-    public enum PersonRelationType { NULL, Friend, Couple};
+    public enum PersonRelationType { NULL, Friend, Couple };
     public class SingleRelation
     {
         PersonRelationType type = PersonRelationType.NULL;

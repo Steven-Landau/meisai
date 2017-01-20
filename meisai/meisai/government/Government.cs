@@ -10,13 +10,13 @@ namespace meisai.government
 {
     public class Government
     {
-        List<Person> personList = new List<Person>();
+        static List<Person> personList = new List<Person>();
         GovernmentState state = new GovernmentState();
 
         public Government()
         {
             state.govMoney = 1000;
-            for (int i=0; i<10000; i++)
+            for (int i = 0; i < 10000; i++)
             {
                 personList.Add(new Person());
             }
@@ -28,6 +28,14 @@ namespace meisai.government
             foreach (Person person in personList)
             {
                 person.deltaTAfter(day);
+            }
+            for (int i = 0; i < personList.Count; i++)
+            {
+                if (personList[i].state.IfWillDie)
+                {
+                    personList.RemoveAt(i);
+                    i--;
+                }
             }
             //统计新的状态
             sumUpStates();

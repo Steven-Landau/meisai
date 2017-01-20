@@ -15,19 +15,27 @@ namespace meisai.persons
      */
     class Person
     {
-        PersonState state = new PersonState();
-        PersonMoney money = new PersonMoney();
-        PersonCareer career = new PersonCareer();
-        PersonRelationShip relationShip = new PersonRelationShip();
+        public PersonState state = new PersonState();
+        public PersonMoney money = new PersonMoney();
+        public PersonCareer career = new PersonCareer();
+        public PersonRelationShip relationShip = new PersonRelationShip();
 
         //这个是每一段时间以后调用一下，人可以挣钱，花钱，交换钱，交友，生子等等
         public void deltaTAfter(int day = 365)
         {
+            state.Death(0.01);
+            //state.Die();
+        }
+        public int getMyMoney() => money.money;
 
-        }
-        public int getMyMoney()
+        public int happiness()
         {
-            return money.Money();
+            int happiness_ = 0;
+
+            return happiness_;
+            //幸福 
         }
+
+
     }
 }

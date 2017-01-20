@@ -11,5 +11,6 @@ namespace meisai.persons.career
      */
     class PersonCareer
     {
+
     }
 }
