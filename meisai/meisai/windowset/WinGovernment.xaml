@@ -19,6 +19,9 @@
         <TextBlock x:Name="textBlockmen" TextWrapping="Wrap" Margin="83.234,67.266,0,0" HorizontalAlignment="Left" Width="265.268" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top"><Run Text="0"/><LineBreak/><Run/></TextBlock>
         <Label x:Name="label_Copy3" Content="人民总数：" HorizontalAlignment="Left" Height="26.133" Margin="10.168,62.266,0,0" VerticalAlignment="Top" Width="73.066"/>
         <Label x:Name="label_Copy4" Content="人" HorizontalAlignment="Left" Height="26.133" Margin="353.334,62.266,0,0" VerticalAlignment="Top" Width="73.066"/>
+        <TextBlock x:Name="textBlockavermoney" TextWrapping="Wrap" Margin="83.234,93.399,0,0" HorizontalAlignment="Left" Width="265.268" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <Label x:Name="label_Copy5" Content="平均资产：" HorizontalAlignment="Left" Height="26.133" Margin="10.168,88.399,0,0" VerticalAlignment="Top" Width="73.066"/>
+        <Label x:Name="label_Copy6" Content="HXB" HorizontalAlignment="Left" Height="26.133" Margin="353.334,88.399,0,0" VerticalAlignment="Top" Width="73.066"/>
 
     </Grid>
 </Window>

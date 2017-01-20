@@ -34,6 +34,8 @@ namespace meisai.windowset
             textBlockgovmoney.Text = "" + goverment.GetGovMoney();
             textBlockallmoney.Text = "" + goverment.GetAllMoney();
             textBlockmen.Text = "" + goverment.GetMenCount();
+            textBlockavermoney.Text = "" + (goverment.GetAllMoney()/ 
+                (double)goverment.GetMenCount());
         }
 
         public bool CanBeClose = false;

@@ -15,7 +15,7 @@ namespace meisai.government
 
         public Government()
         {
-            state.govMoney = 1000;
+            state.govMoney = 1000*10000;
             for (int i = 0; i < 10000; i++)
             {
                 personList.Add(new Person());
@@ -31,11 +31,18 @@ namespace meisai.government
             }
             for (int i = 0; i < personList.Count; i++)
             {
+                //死人
                 if (personList[i].state.IfWillDie)
                 {
                     personList.RemoveAt(i);
                     i--;
+                    continue;
                 }
+            }
+            foreach (Person person in personList)
+            {
+                state.govMoney += person.money.tax;
+                state.govMoney -= person.money.welfare;
             }
             //统计新的状态
             sumUpStates();
@@ -49,8 +56,8 @@ namespace meisai.government
                 state.allMoney += person.getMyMoney();
             }
         }
-        public int GetGovMoney() => state.govMoney;
-        public int GetAllMoney() => state.allMoney;
+        public Int64 GetGovMoney() => state.govMoney;
+        public Int64 GetAllMoney() => state.allMoney;
         public int GetMenCount() => personList.Count;
     }
 }

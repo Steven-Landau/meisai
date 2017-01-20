@@ -27,6 +27,8 @@ namespace meisai.Tools
         #endregion
 
         #region 挣钱
+        //失业最低工资
+        public static int minimumwage = 10000;
         //静态的挣钱系数
         public static double productparameter = 0.08;
         //倾向与性别和人种有关

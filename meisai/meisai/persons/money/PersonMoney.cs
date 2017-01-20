@@ -20,26 +20,29 @@ namespace meisai.persons.money
         public int taxrate = 0;
         public int welfare = 0;
         public int tax = 0;//交税
+        public int productMoney = 0;
+        public int welfareMoney = 0;
+
         //每一段时间调用以下函数，个人挣钱和花钱
         public void deltaTAfter(PersonState state, int day)
         {
             //挣钱 + 花钱
-            money += product(state);// - tax;
-
-            if (money > AllParameter.basicconsumtion)
-                money -= consumption(state);//判定这人有没有钱
-            else
-            {
-                welfare = -money + AllParameter.basicconsumtion;
-                money = 0;
-            }
-            //没钱的话政府给福利
+            productMoney = product(state);
+            money += productMoney - tax + welfareMoney;
+            money -= consumption(state);
         }
         //生产
         public int product(PersonState state, int day = 365)
         {
             int product_money;
-            if (state.Age > AllParameter.graduateage)
+            welfareMoney = 0;
+            if (state.Age < AllParameter.graduateage || 
+                state.Age > AllParameter.retireage)
+            {
+                product_money = 0;
+                welfareMoney = AllParameter.basicconsumtion;
+            }
+            else
             {
                 //先获得系数，即此系数*已有资金=新增资金
                 double product_money_d = Math.Sqrt(money) *
@@ -49,10 +52,14 @@ namespace meisai.persons.money
                     AllParameter.producttendency(state.race);
                 //Console.WriteLine(product_money_d);
                 product_money = (int)product_money_d;
+                if (product_money < AllParameter.minimumwage)
+                {
+                    //失业了
+                    product_money = 0;
+                    welfareMoney = AllParameter.basicconsumtion;
+                }
             }
-            else product_money = 0;
             tax = (int)(product_money * AllParameter.taxRate());
-            
             return product_money;
         }
         //消费
@@ -71,7 +78,7 @@ namespace meisai.persons.money
             {
                 consumption_ = (int)(AllParameter.basicconsumtion + 
                     AllParameter.consumetendency(state.race, state.gender) * 
-                    (product(state) - AllParameter.basicconsumtion) * (1 - taxrate));
+                    (productMoney - AllParameter.basicconsumtion) * (1 - taxrate));
             }
             //Console.WriteLine(consumption_);
             return consumption_;
