@@ -15,19 +15,20 @@ namespace meisai.persons.money
     public class PersonMoney
     {
         //为简化起见，先存一个money，以后可以增加贷款信用等等
-        public int money;
-        static int producttendency;
-        int consumetendency;//倾向与性别和人种有关
+        public int money = AllParameter.init_money;
+        public double producttendency = 0;
+        int consumetendency = 1;//倾向与性别和人种有关
         public int taxrate = 0;
         public int welfare = 0;
         public int tax = 0;//交税
         //每一段时间调用以下函数，个人挣钱和花钱
-        public void deltaTAfter(int day)
+        public void deltaTAfter(PersonState state, int day)
         {
             //挣钱 + 花钱
-            //money += product()-tax;
+            money += product(state);// - tax;
+
             if (money > AllParameter.basicconsumtion)
-                money -= AllParameter.basicconsumtion;//判定这人有没有钱
+                money -= consumption(state);//判定这人有没有钱
             else
             {
                 welfare = -money + AllParameter.basicconsumtion;
@@ -36,20 +37,27 @@ namespace meisai.persons.money
             //没钱的话政府给福利
         }
         //生产
-        public int product(PersonState state, PersonEducation education, int day = 365)
+        public int product(PersonState state, int day = 365)
         {
-            int product_;
+            int product_money;
             if (state.Age > AllParameter.graduateage)
             {
-                product_ = state.funage() * education.EduLevel * AllParameter.productparameter * producttendency;
+                //先获得系数，即此系数*已有资金=新增资金
+                double product_money_d = Math.Sqrt(money) *
+                    AllParameter.productOfAge(state.Age) *
+                    Math.Sqrt(state.education.EduLevel) *
+                    AllParameter.productparameter *
+                    AllParameter.producttendency(state.race);
+                //Console.WriteLine(product_money_d);
+                product_money = (int)product_money_d;
             }
-            else product_ = 0;
-            product_ *= (int)(Math.Sqrt(money));
-            tax = product_ * taxrate;
-            return product_;
+            else product_money = 0;
+            tax = (int)(product_money * AllParameter.taxRate());
+            
+            return product_money;
         }
         //消费
-        public int consumption(PersonState state, PersonEducation education)
+        public int consumption(PersonState state)
         {
             int consumption_;
             if (state.Age < AllParameter.graduateage)
@@ -62,8 +70,10 @@ namespace meisai.persons.money
             }
             else
             {
-                consumption_ = AllParameter.basicconsumtion + consumetendency * product(state, education) * (1 - taxrate);
+                consumption_ = AllParameter.basicconsumtion + consumetendency * 
+                    (product(state) - AllParameter.basicconsumtion) * (1 - taxrate);
             }
+            //Console.WriteLine(consumption_);
             return consumption_;
         }
 

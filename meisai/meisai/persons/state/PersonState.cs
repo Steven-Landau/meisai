@@ -17,11 +17,15 @@ namespace meisai.persons.state
         public Gender gender = Gender.NULL;
         //种族
         public Race race = Race.Lazy;
-        //技能
-        public int Age;
+        //年龄
+        public int Age = 25;
+        //死亡率及状态（是否将要死亡）
         public double Deathrate = 0.01;
-        //死亡
         public bool IfWillDie = false;
+        //教育程度
+        public PersonEducation education = new PersonEducation();
+
+
         public void Die()
         {
             IfWillDie = true;
@@ -35,21 +39,13 @@ namespace meisai.persons.state
             //Console.WriteLine(RandKey);
             if (RandKey < Deathrate_) Die();
         }
-        public int funage()
-        {
-            return -(Age - 35) * (Age - 35) + 289;
-        }
-
-        PersonEducation education = new PersonEducation();
-
         public void deltaTAfter(int day = 365)
         {
             Age++;//年龄增加
-            Deathrate = AllParameter.basicdeathrate +//基础死亡率
-                    AllParameter.age_deathrate *
-                    Math.Pow((Age - AllParameter.least_age_deathrate), 2);
-                   //随年龄而变的死亡率
-            
+            //随年龄而变的死亡率
+            Deathrate = AllParameter.basicdeathrate +
+                AllParameter.age_deathrate *
+                Math.Pow((Age - AllParameter.least_age_deathrate), 2);
         }
 
     }
@@ -59,10 +55,10 @@ namespace meisai.persons.state
     public class PersonEducation
     {
         //教育水平
-        public int EduLevel = 0;
-        public bool studying;
+        public double EduLevel = 1;
+        public bool studying = false;
 
-        public void getstudy(int year)
+        public void getstudydeltaT(int day)
         {
             // isworking = false;//学习期间不能工作
             EduLevel++;
