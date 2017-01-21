@@ -15,11 +15,24 @@ namespace meisai.government
         GovernmentState state = new GovernmentState();
 
         public Government()
-        {
+        {//初态
             state.govMoney = 1000*10000;
             for (int i = 0; i < 10000; i++)
             {
                 personList.Add(new Person());
+            }
+            /*//平均年龄分布
+            for (int i=0;i<10; i++)
+            {
+                for(int j=0;j<1000;j++)
+                {
+                    personList[1000 * i + j].state.Age = 10*i+(j+50)/100;
+                }
+            }*/
+            //线性年龄分布
+            for(int i=0;i<10000;i++)
+            {
+                personList[i].state.Age = 18 + (36 * (i-5000)) / 10000;
             }
         }
         public void deltaTAfter(int day = 365)
@@ -35,7 +48,7 @@ namespace meisai.government
             {
            
                 if (person.state.Age < 18)        
-                state.gov_edu_expen= (int)(AllParameter.bassic_edu_fee *
+                state.gov_edu_expen+= (int)(AllParameter.bassic_edu_fee *
                         AllParameter.gov_edu_rate *
                         Math.Sqrt(person.state.education.EduLevel));
               
@@ -50,7 +63,7 @@ namespace meisai.government
             //政府收税      
             foreach (Person person in personList)
             {
-                state.gov_tax += person.money.tax;
+                state.gov_tax += person.money.taxMoney;
                 state.gov_wel_expen += person.money.welfareMoney;
 
             }

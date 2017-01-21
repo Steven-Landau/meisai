@@ -18,7 +18,7 @@ namespace meisai.persons.money
         public int money = AllParameter.init_money;
         //public double producttendency = 0;
         //public int welfare = 0;
-        public int tax = 0;//交税
+        public int taxMoney = 0;
         public int productMoney = 0;
         public int welfareMoney = 0;
 
@@ -27,7 +27,8 @@ namespace meisai.persons.money
         {
             //挣钱 + 花钱
             productMoney = product(state);
-            money += productMoney - tax + welfareMoney;
+            taxMoney = tax();
+            money += productMoney - taxMoney + welfareMoney;
             money -= consumption(state);
         }
         //生产
@@ -68,24 +69,6 @@ namespace meisai.persons.money
         public int consumption(PersonState state)
         {
             int consumption_;
-            
-            // Determine taxmode  ,  stupid
-            AllParameter.TaxMode taxmode;
-            if(productMoney < 10000)
-                taxmode = AllParameter.TaxMode.Zero;
-            else if(productMoney < 20000)
-                taxmode = AllParameter.TaxMode.Low;
-            else if(productMoney < 50000)
-                taxmode = AllParameter.TaxMode.Medium;
-            else if(productMoney < 80000)
-                taxmode = AllParameter.TaxMode.High;
-            else    
-                taxmode = AllParameter.TaxMode.Extreme;
-            //这里的税是生产税不是消费税！
-            tax = (int)(productMoney * AllParameter.taxRate(taxmode));
-
-            // I am a pig I only write if else.....
-
             if (state.Age < AllParameter.graduateage || state.Age > AllParameter.retireage)
             {
                 consumption_ = AllParameter.basicconsumtion;
@@ -98,10 +81,28 @@ namespace meisai.persons.money
             {
                 consumption_ = (int)(AllParameter.basicconsumtion +
                     AllParameter.consumetendency(state.race, state.gender) *
-                    (productMoney - AllParameter.basicconsumtion) * (1 - AllParameter.taxRate(taxmode)));
+                    (productMoney - AllParameter.basicconsumtion) );
             }
            // Console.WriteLine(consumption_);
             return consumption_;
+        }
+        public int tax()
+        {
+            int tax_;
+            AllParameter.TaxMode taxmode;
+            if (productMoney < 10000)
+                taxmode = AllParameter.TaxMode.Zero;
+            else if (productMoney < 20000)
+                taxmode = AllParameter.TaxMode.Low;
+            else if (productMoney < 50000)
+                taxmode = AllParameter.TaxMode.Medium;
+            else if (productMoney < 80000)
+                taxmode = AllParameter.TaxMode.High;
+            else
+                taxmode = AllParameter.TaxMode.Extreme;
+            //这里的税是生产税不是消费税！
+            tax_ = (int)(productMoney * AllParameter.taxRate(taxmode));
+            return tax_;
         }
 
 

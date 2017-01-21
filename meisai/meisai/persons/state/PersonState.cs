@@ -15,13 +15,13 @@ namespace meisai.persons.state
     public class PersonState
     {
         //智商
-        public double IQ = 0.5 + RandomGen.getDouble()/2; 
+        public double IQ = 0.05+0.95* RandomGen.getDouble(); 
         //性别
         public Gender gender = Gender.Male;
         //种族
         public Race race = Race.Lazy;
         //年龄
-        public int Age = 5;
+        public int Age = 25;
         //死亡率及状态（是否将要死亡）
         public double Deathrate(int Age) {
             if(Age <= 1)
