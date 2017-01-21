@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace meisai.Tools
 {
@@ -115,5 +116,10 @@ namespace meisai.Tools
         public static int gov_edu_rate = 1;
         #endregion
 
+        #region 颜色显示
+        public static Brush[] colorBrush = new Brush[10] { Brushes.Brown, Brushes.Red,
+            Brushes.Orange, Brushes.Yellow, Brushes.Green, Brushes.Blue,
+            Brushes.Purple, Brushes.Gray, Brushes.White, Brushes.Black};
+        #endregion
     }
 }
