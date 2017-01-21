@@ -29,27 +29,43 @@ namespace meisai.windowset.basis
         public Histogram()
         {
             InitializeComponent();
+            this.SizeChanged += Histogram_SizeChanged;
         }
+
+        private void Histogram_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Refresh();
+        }
+
         public void Refresh()
         {
             //可以用了
             //MessageBox.Show("Width=" + canvas.ActualWidth);
-            double height = canvas.ActualHeight;
+            double height = canvas.ActualHeight - 20;
             double allWidth = canvas.ActualWidth;
             double width = allWidth / data.Length;
             canvas.Children.Clear(); //清除所有child
+            if (height < 0) return;
             //绘制
             for (int i=0; i<data.Length; i++)
             {
                 Rectangle rect = new Rectangle();
+                Rectangle rect1 = new Rectangle();
                 rect.Height = height * (data[i] / maxData);
+                rect1.Height = 20;
                 rect.Width = width;
+                rect1.Width = width;
                 rect.Fill = brush[i % 10];
+                rect1.Fill = brush[i % 10];
                 rect.StrokeThickness = 1;
+                rect1.StrokeThickness = 0;
                 rect.Stroke = Brushes.Black;
                 canvas.Children.Add(rect);
-                Canvas.SetBottom(rect, 0);
+                canvas.Children.Add(rect1);
+                Canvas.SetBottom(rect, 20);
+                Canvas.SetBottom(rect1, 0);
                 Canvas.SetLeft(rect, width * i);
+                Canvas.SetLeft(rect1, width * i);
             }
         }
     }

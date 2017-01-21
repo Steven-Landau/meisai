@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace meisai.government
 {
@@ -13,6 +14,8 @@ namespace meisai.government
     {
         static List<Person> personList = new List<Person>();
         GovernmentState state = new GovernmentState();
+        //年龄分布，从0岁到99岁
+        public double[] ageDistrib = new double[100];
 
         public Government()
         {
@@ -72,6 +75,7 @@ namespace meisai.government
             
             //统计新的状态
             sumUpStates();
+            getAgeAttribution();
         }
         private void sumUpStates()
         {
@@ -87,6 +91,29 @@ namespace meisai.government
                 state.allProduct += person.money.product(person.state);
                 
                 if (person.money.product(person.state) == 0) state.jobless++;
+            }
+        }
+        private void getAgeAttribution()
+        {
+            for (int i = 0; i < ageDistrib.Length; i++) ageDistrib[i] = 0;
+            int yichu = 0;
+            foreach (Person person in personList)
+            {
+                if (person.state.Age < ageDistrib.Length && person.state.Age > 0)
+                {
+                    ageDistrib[person.state.Age] ++;
+                }
+                else
+                {
+                    yichu ++;
+                }
+            }
+            for (int i = 0; i < ageDistrib.Length; i++) ageDistrib[i] /= 
+                    personList.Count;
+            if (yichu > 0)
+            {
+                MessageBox.Show("由于有" + yichu + "人年龄不小于" + ageDistrib.Length + 
+                    "岁，导致年龄分布没有显示它们");
             }
         }
         public long GetGovMoney() => state.govMoney;

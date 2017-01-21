@@ -32,6 +32,7 @@ namespace meisai.windowset
         public void Refresh()
         {
             histogram.maxData = 1;
+            histogram.data = goverment.ageDistrib;
 
             histogram.Refresh();
         }
