@@ -52,6 +52,14 @@ namespace meisai.persons
                     }
                 }
             }
+            for (int i=0; i<relationShip.relations.Count; i++)
+            {
+                if (relationShip.relations[i].type == PersonRelationType.Child &&
+                    relationShip.relations[i].targetPerson.state.Age < 18)
+                {
+                    //是孩子！！！要付孩子的教育费
+                }
+            }
         }
         public int getMyMoney() => money.money;
 
