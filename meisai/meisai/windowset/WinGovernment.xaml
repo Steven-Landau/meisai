@@ -8,31 +8,30 @@
         Title="政府状态" Height="300" Width="432.8">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="45*"/>
-            <ColumnDefinition Width="383*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="textBlockgovmoney" TextWrapping="Wrap" Margin="38.066,15,0,0" HorizontalAlignment="Left" Width="106.661" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment" Grid.Column="1"><Run Text="0"/><LineBreak/><Run/></TextBlock>
-        <Label x:Name="label" Content="政府资产：" HorizontalAlignment="Left" Height="26.133" Margin="-35,10,0,0" VerticalAlignment="Top" Width="73.066" Grid.Column="1"/>
-        <Label x:Name="label_Copy" Content="HXB" HorizontalAlignment="Left" Height="26.133" Margin="144.727,10,0,0" VerticalAlignment="Top" Width="49.263" Grid.Column="1"/>
-        <TextBlock x:Name="textBlockallmoney" TextWrapping="Wrap" Margin="246.966,41.133,0,0" HorizontalAlignment="Left" Width="106.661" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top" Grid.Column="1"><Run Text="0"/><LineBreak/><Run/></TextBlock>
-        <Label x:Name="label_Copy1" Content="民众资产：" Height="26.133" Margin="183.921,36.133,125.834,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <TextBlock x:Name="textBlockmen" TextWrapping="Wrap" Margin="252.134,73.466,0,0" HorizontalAlignment="Left" Width="105.093" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top" Grid.Column="1"><Run Text="0"/><LineBreak/><Run/></TextBlock>
-        <Label x:Name="label_Copy3" Content="人民总数：" Height="26.133" Margin="179.068,68.466,130.687,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label x:Name="label_Copy4" Content="人" HorizontalAlignment="Left" Height="26.133" Margin="357.227,71.212,0,0" VerticalAlignment="Top" Width="21.397" RenderTransformOrigin="0.903,0.41" Grid.Column="1"/>
-        <TextBlock x:Name="textBlockavermoney" TextWrapping="Wrap" Margin="252.134,102.345,0,0" HorizontalAlignment="Left" Width="105.093" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top" Grid.Column="1"><Run Text="0"/><LineBreak/><Run/></TextBlock>
-        <Label x:Name="label_Copy5" Content="平均资产：" Height="26.133" Margin="179.068,102.345,130.687,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label x:Name="label_Copy7" Content="失业率" Margin="10,0,-28.066,42.631" Height="26.133" VerticalAlignment="Bottom"/>
-        <TextBlock x:Name="textBlockaverproduct" TextWrapping="Wrap" Margin="246.966,0,0,48.831" HorizontalAlignment="Left" Width="110.261" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Bottom" Grid.Column="1"><Run Text="0"/><LineBreak/><Run/></TextBlock>
-        <TextBlock x:Name="textBlockaverconsumption" TextWrapping="Wrap" Margin="246.966,0,0,95.577" HorizontalAlignment="Left" Width="110.261" Background="#FF5CFCFF" Grid.Column="1" Height="26.133" VerticalAlignment="Bottom"><Run Text="0"/><LineBreak/><Run/></TextBlock>
-        <Label x:Name="label_Copy10" Content="人均消费" Margin="183.921,0,140.855,96.777" Grid.Column="1" Height="24.933" VerticalAlignment="Bottom"/>
-        <TextBlock x:Name="joblessrate" TextWrapping="Wrap" Margin="38.066,0,0,42.631" HorizontalAlignment="Left" Width="110.261" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment" Grid.Column="1"><Run Text="0"/><LineBreak/><Run/></TextBlock>
-        <Label x:Name="label_Copy11" Content="人均生产" Margin="183.921,0,140.855,42.631" Height="24.933" VerticalAlignment="Bottom" Grid.Column="1"/>
-        <Label x:Name="label_Copy2" Content="政府教育支出" Height="26.133" Margin="-35,41.133,0,0" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Left" Width="87.066"/>
-        <Label x:Name="label_Copy6" Content="政府福利支出" Height="26.133" Margin="-34.979,77.412,0,0" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Left" Width="87.066"/>
-        <Label x:Name="label_Copy8" Content="政府税收" Margin="-34.979,111.291,0,135.076" Grid.Column="1" HorizontalAlignment="Left" Width="87.066"/>
-        <TextBlock x:Name="textBlock_edu_expen" TextWrapping="Wrap" Margin="41.666,50.079,0,0" HorizontalAlignment="Left" Width="106.661" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top" Grid.Column="1" d:LayoutOverrides="HorizontalAlignment"><Run Text="0"/><LineBreak/><Run/></TextBlock>
-        <TextBlock x:Name="textBlock_wel_expen" TextWrapping="Wrap" Margin="41.666,82.412,0,0" HorizontalAlignment="Left" Width="106.661" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top" Grid.Column="1" d:LayoutOverrides="HorizontalAlignment"><Run Text="0"/><LineBreak/><Run/></TextBlock>
-        <TextBlock x:Name="textBlock_tax" TextWrapping="Wrap" Margin="41.666,116.291,0,0" HorizontalAlignment="Left" Width="106.661" Background="#FF5CFCFF" Grid.Column="1" d:LayoutOverrides="HorizontalAlignment" Height="14.933" VerticalAlignment="Top"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="textBlockgovmoney" TextWrapping="Wrap" Margin="83.108,15,0,0" HorizontalAlignment="Left" Width="106.661" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <Label x:Name="label" Content="政府资产：" HorizontalAlignment="Left" Height="26.133" Margin="10.042,10,0,0" VerticalAlignment="Top" Width="73.066"/>
+        <Label x:Name="label_Copy" Content="HXB" HorizontalAlignment="Left" Height="26.133" Margin="189.769,10,0,0" VerticalAlignment="Top" Width="49.263"/>
+        <TextBlock x:Name="textBlockallmoney" TextWrapping="Wrap" Margin="292.146,41.133,0,0" HorizontalAlignment="Left" Width="106.661" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <Label x:Name="label_Copy1" Content="民众资产：" Height="26.133" Margin="0,36.133,125.591,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="71.708"/>
+        <TextBlock x:Name="textBlockmen" TextWrapping="Wrap" Margin="297.314,73.466,0,0" HorizontalAlignment="Left" Width="105.093" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <Label x:Name="label_Copy3" Content="人民总数：" Height="26.133" Margin="0,68.466,130.444,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="71.708"/>
+        <Label x:Name="label_Copy4" Content="人" HorizontalAlignment="Left" Height="26.133" Margin="402.407,71.212,0,0" VerticalAlignment="Top" Width="21.397" RenderTransformOrigin="0.903,0.41"/>
+        <TextBlock x:Name="textBlockavermoney" TextWrapping="Wrap" Margin="297.314,102.345,0,0" HorizontalAlignment="Left" Width="105.093" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <Label x:Name="label_Copy5" Content="平均资产：" Height="26.133" Margin="0,102.345,130.444,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="71.708"/>
+        <Label x:Name="label_Copy7" Content="失业率" Margin="10,0,0,42.631" Height="26.133" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="63.108"/>
+        <TextBlock x:Name="textBlockaverproduct" TextWrapping="Wrap" Margin="292.146,206.636,0,0" HorizontalAlignment="Left" Width="110.261" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="textBlockaverconsumption" TextWrapping="Wrap" Margin="292.146,148.69,0,0" HorizontalAlignment="Left" Width="110.261" Background="#FF5CFCFF" Height="13.866" VerticalAlignment="Top"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <Label x:Name="label_Copy10" Content="人均消费" Margin="224.11,143.69,0,0" HorizontalAlignment="Left" Width="56.792" Height="24.933" VerticalAlignment="Top"/>
+        <TextBlock x:Name="joblessrate" TextWrapping="Wrap" Margin="83.108,0,0,52.631" HorizontalAlignment="Left" Width="110.261" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <Label x:Name="label_Copy11" Content="人均生产" Margin="223.853,204.382,0,0" Height="24.933" VerticalAlignment="Top" HorizontalAlignment="Left" Width="56.687"/>
+        <Label x:Name="label_Copy2" Content="政府教育支出" Height="26.133" Margin="10.042,41.133,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="87.066"/>
+        <Label x:Name="label_Copy6" Content="政府福利支出" Height="26.133" Margin="10.063,77.412,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="87.066"/>
+        <Label x:Name="label_Copy8" Content="政府税收" Margin="10.063,111.291,0,0" HorizontalAlignment="Left" Width="87.066" Height="24.033" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_edu_expen" TextWrapping="Wrap" Margin="97.129,47.333,0,0" HorizontalAlignment="Left" Width="106.661" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="textBlock_wel_expen" TextWrapping="Wrap" Margin="97.129,82.412,0,0" HorizontalAlignment="Left" Width="106.661" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="textBlock_tax" TextWrapping="Wrap" Margin="83.108,116.291,0,0" HorizontalAlignment="Left" Width="106.661" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"><Run Text="0"/><LineBreak/><Run/></TextBlock>
 
     </Grid>
 </Window>
