@@ -56,6 +56,12 @@
     </ApplicationDefinition>
     <Compile Include="Tools\AllParameter.cs" />
     <Compile Include="Tools\RandomGen.cs" />
+    <Compile Include="windowset\AgeDistribution.xaml.cs">
+      <DependentUpon>AgeDistribution.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windowset\basis\Histogram.xaml.cs">
+      <DependentUpon>Histogram.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windowset\WinGovernment.xaml.cs">
       <DependentUpon>WinGovernment.xaml</DependentUpon>
     </Compile>
@@ -73,6 +79,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="windowset\AgeDistribution.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windowset\basis\Histogram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="windowset\WinGovernment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

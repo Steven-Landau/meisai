@@ -23,25 +23,25 @@ namespace meisai.persons.state
         //年龄
         public int Age = 25;
         //死亡率及状态（是否将要死亡）
-        public double Deathrate(int Age) {
+        public double Deathrate(int Age, PersonMoney pm) {
             if(Age <= 1)
-                return 0.008;
+                return 0.008* (1 - pm.Money()/1000000.0);
             else if(Age <= 4)
-                return 0.00029;
+                return 0.00029* (1 - pm.Money()/1000000.0);
             else if(Age <= 14)
-                return 0.00015;
+                return 0.00015* (1 - pm.Money()/1000000.0);
             else if(Age <= 24)
-                return 0.0008;
+                return 0.0008* (1 - pm.Money()/1000000.0);
             else if(Age <= 34)
-                return 0.00104;
+                return 0.00104* (1 - pm.Money()/1000000.0);
             else if(Age <= 44)
-                return 0.00184;
+                return 0.00184* (1 - pm.Money()/1000000.0);
             else if(Age <= 54)
-                return 0.0042;
+                return 0.0042* (1 - pm.Money()/1000000.0);
             else if(Age <= 64)
-                return 0.00877;
+                return 0.00877* (1 - pm.Money()/1000000.0);
             else if(Age <= 74)
-                return 0.02011;
+                return 0.02011* (1 - pm.Money()/1000000.0);
             else if(Age <= 84)
                 return 0.05011;
             else

@@ -26,6 +26,7 @@ namespace meisai
     {
         Government government;
         WinGovernment winGovernment;
+        AgeDistribution ageDistribution;
         int nowDay = 0;
 
         public MainWindow() 
@@ -34,7 +35,9 @@ namespace meisai
             RandomGen.Initiate();
             government = new Government();
             winGovernment = new WinGovernment(government);
+            ageDistribution = new AgeDistribution(government);
             winGovernment.Show();
+            ageDistribution.Show();
 
             buttonstartayear.Click += Buttonstartayear_Click;
         }
@@ -44,6 +47,7 @@ namespace meisai
             textBlockyear.Text = "" + (nowDay / 365);
 
             winGovernment.Refresh();
+            ageDistribution.Refresh();
         }
 
         private void deltaTAfter(int day = 365)

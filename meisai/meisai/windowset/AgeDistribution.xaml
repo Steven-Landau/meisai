@@ -1,0 +1,16 @@
+﻿<Window x:Class="meisai.windowset.AgeDistribution"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:meisai.windowset"
+        xmlns:wyHistogram="clr-namespace:meisai.windowset.basis"
+        mc:Ignorable="d"
+        Title="年龄分布" Height="300" Width="596">
+    <Grid>
+        <wyHistogram:Histogram x:Name="histogram" Margin="56.534,0,0,40.24"/>
+        <Label x:Name="label" Content="1%" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy" Content="0%" HorizontalAlignment="Left" Margin="10,0,0,35.2" VerticalAlignment="Bottom"/>
+        <Label x:Name="label_Copy1" Content="人口分布，通过颜色来显示数字（棕红橙黄绿蓝紫灰白黑）" Margin="10,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="450.647"/>
+    </Grid>
+</Window>
