@@ -44,6 +44,9 @@ namespace meisai.persons.money
         {
             int product_money;
             welfareMoney = 0;
+            //如果达到年龄，强制毕业并要求工作
+            if (state.Age > AllParameter.graduateage)
+                state.education.studying = false;
             if (state.Age > AllParameter.retireage)
             {
                 product_money = 0;
@@ -93,7 +96,7 @@ namespace meisai.persons.money
             {
                 consumption_ = (int)(AllParameter.basicconsumption +
                     AllParameter.consumetendency(state.race, state.gender) *
-                    (productMoney - AllParameter.basicconsumption) );
+                    (productMoney-tax() - AllParameter.basicconsumption) );
             }
            // Console.WriteLine(consumption_);
             return consumption_;

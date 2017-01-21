@@ -54,12 +54,11 @@ namespace meisai.persons
                             break;
                     }
                 }
-                //所有的遗产继承给大儿子！！！
+                //部分遗产继承给大儿子！！！
                 Person child = relationShip.findRelation(PersonRelationType.Child);
                 if (child != null)
                 {
-                    child.money.money += money.money;
-                    money.money = 0;
+                    child.money.money +=(int)((1-AllParameter.Inheritance_tax_rate) *money.money);                   
                 }
             }
             if (state.Age < AllParameter.graduateage && state.education.studying)
@@ -201,7 +200,7 @@ namespace meisai.persons
 
         public bool tryGetBasisConsumption()
         {
-            if (AllParameter.childbasicconsumption > money.money)
+            if (AllParameter.childbasicconsumption < money.money)
             {
                 money.money -= AllParameter.childbasicconsumption;
                 return true;

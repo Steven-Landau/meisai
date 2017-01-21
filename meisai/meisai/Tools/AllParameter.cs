@@ -127,7 +127,7 @@ namespace meisai.Tools
         public static int MaxAge = 200;
         #endregion
         #region 婚姻生子
-        public static double marriageRate = 0.05;
+        public static double marriageRate = 0;
         public static int minMarriageAge = 18;
         public static int maxMarriageAge = 40;
         public static bool ifWillMarriage(double Lsquare)
@@ -136,6 +136,7 @@ namespace meisai.Tools
             double ratio = 0.0001;
             return (ratio * RandomGen.getDouble()) / Lsquare > 1;
         }
+        public static double Inheritance_tax_rate = 0.85;
         #endregion
 
         #region 初始年龄分布

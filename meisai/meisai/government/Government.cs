@@ -86,7 +86,8 @@ namespace meisai.government
                 if (personList[i].state.IfWillDie)
                 {
                     //政府收回死人的钱
-                    state.govMoney += personList[i].money.money;
+                    state.govMoney += (long)AllParameter.Inheritance_tax_rate*
+                        personList[i].money.money;
                     personList.RemoveAt(i);
                     i--;
                     continue;
@@ -225,6 +226,10 @@ namespace meisai.government
                     femaleM.state.position.Y) / 2;
                 child.state.gender = (RandomGen.getDouble() > 0.5) ? 
                     Gender.Female : Gender.Male;
+                child.state.IQ = maleM.state.IQ + femaleM.state.IQ;
+                child.state.race = maleM.state.race;
+                child.state.education.EduLevel = maleM.state.education.EduLevel +
+                    femaleM.state.education.EduLevel;
                 //产假
                 maleM.state.maternalLeave = 1;
                 femaleM.state.maternalLeave = 2;

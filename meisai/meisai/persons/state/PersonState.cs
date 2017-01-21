@@ -89,7 +89,7 @@ namespace meisai.persons.state
         {
             if (studying) EduLevel++;
         }
-
+       
         public void offStudy() => studying = false;
     }
 
