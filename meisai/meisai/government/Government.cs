@@ -24,21 +24,23 @@ namespace meisai.government
         }
         public void deltaTAfter(int day = 365)
         {
+            //置零
+            state.gov_edu_expen = 0;//教育总支出
+            state.gov_wel_expen = 0;//福利总支出
+            state.gov_tax = 0;
             //先进行政策范围内的事情：
             //1,开展全民教育
             
             foreach (Person person in personList)
             {
            
-                if (person.state.Age < 18)
-                  
-               
-                state.govMoney -= (int)(AllParameter.bassic_edu_fee *
+                if (person.state.Age < 18)        
+                state.gov_edu_expen= (int)(AllParameter.bassic_edu_fee *
                         AllParameter.gov_edu_rate *
                         Math.Sqrt(person.state.education.EduLevel));
-
+              
             }
-
+            state.govMoney -= state.gov_edu_expen;
             //再遍历每个人实现个人的改变，包括赚钱等等
             //每个人挣钱
             foreach (Person person in personList)
@@ -48,10 +50,12 @@ namespace meisai.government
             //政府收税      
             foreach (Person person in personList)
             {
-                state.govMoney += person.money.tax;
-                state.govMoney -= person.money.welfareMoney;
+                state.gov_tax += person.money.tax;
+                state.gov_wel_expen += person.money.welfareMoney;
 
             }
+            state.govMoney += state.gov_tax;
+            state.govMoney -= state.gov_wel_expen;
             //死人
             for (int i = 0; i < personList.Count; i++)
             {
@@ -85,11 +89,14 @@ namespace meisai.government
                 if (person.money.product(person.state) == 0) state.jobless++;
             }
         }
-        public Int64 GetGovMoney() => state.govMoney;
-        public Int64 GetAllMoney() => state.allMoney;
-        public Int64 GetAllConsumption() => state.allConsumption;
-        public Int64 GetAllProduct() => state.allProduct;
+        public long GetGovMoney() => state.govMoney;
+        public long GetAllMoney() => state.allMoney;
+        public long GetAllConsumption() => state.allConsumption;
+        public long GetAllProduct() => state.allProduct;
         public int GetMenCount() => personList.Count;
         public int GetJobless() => state.jobless;
+        public long Gettax() => state.gov_tax;
+        public long Getedu() => state.gov_edu_expen;
+        public long Getwel() => state.gov_wel_expen;
     }
 }

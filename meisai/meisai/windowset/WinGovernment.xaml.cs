@@ -39,6 +39,9 @@ namespace meisai.windowset
             textBlockaverproduct.Text = "" + goverment.GetAllProduct()/ (double)goverment.GetMenCount();
             textBlockaverconsumption.Text = "" + goverment.GetAllConsumption()/ (double)goverment.GetMenCount();
             joblessrate.Text=""+goverment.GetJobless()/ (double)goverment.GetMenCount();
+            textBlock_edu_expen.Text = "" + goverment.Getedu();
+            textBlock_wel_expen.Text = "" + goverment.Getwel();
+            textBlock_tax.Text = "" + goverment.Gettax();
         }
 
         public bool CanBeClose = false;
