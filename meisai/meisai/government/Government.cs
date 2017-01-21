@@ -33,7 +33,8 @@ namespace meisai.government
             {
                 personList[i].state.gender = (Gender)(i / 5000);
                 personList[i].state.race = (Race)(i / 5000);
-                personList[i].state.Age = 18 + (36 * (i-5000)) / 10000;
+                //personList[i].state.Age = 18 + (36 * (i-5000)) / 10000;
+                personList[i].state.Age = AllParameter.GetAge();
             }
         }
         public void deltaTAfter(int day = 365)

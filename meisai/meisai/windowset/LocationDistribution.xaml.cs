@@ -26,13 +26,19 @@ namespace meisai.windowset
         {
             goverment = goverment_;
             InitializeComponent();
+            refreshenable.Checked += Refreshenable_Checked;
+        }
+
+        private void Refreshenable_Checked(object sender, RoutedEventArgs e)
+        {
+            if (refreshenable.IsChecked.Value) dotMap.Refresh();
         }
 
         public void Refresh()
         {
             dotMap.positions = goverment.positions;
             dotMap.relationship = goverment.relationship;
-            dotMap.Refresh();
+            if (refreshenable.IsChecked.Value) dotMap.Refresh();
         }
 
         public bool CanBeClose = false;

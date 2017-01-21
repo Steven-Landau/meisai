@@ -127,7 +127,7 @@ namespace meisai.Tools
         public static int MaxAge = 200;
         #endregion
         #region 婚姻生子
-        public static double marriageRate = 0.001;
+        public static double marriageRate = 0.01;
         public static int minMarriageAge = 18;
         public static int maxMarriageAge = 40;
         public static bool ifWillMarriage(double Lsquare)
@@ -135,6 +135,37 @@ namespace meisai.Tools
             //这个数可以改！！越小意味着随距离的关系越明显，但跑得会慢
             double ratio = 0.0001;
             return (ratio * RandomGen.getDouble()) / Lsquare > 1;
+        }
+        #endregion
+
+        #region 初始年龄分布
+        static double[] ageDistriAndWeight = new double[] {43.2024, 58.7072,
+            79.0705, 105.555, 139.663, 183.156, 238.069, 
+            306.708, 391.639, 495.663, 621.765, 773.047, 952.633, 1163.55,
+            1408.58, 1690.13, 2010.01, 2369.28, 2768.04, 3205.31, 3678.79,
+            4184.86, 4718.42, 5272.92, 5840.45, 6411.8, 6976.76, 7524.32,
+            8043.04, 8521.44, 8948.39, 9313.58, 9607.89, 9823.79, 9955.65, 10000};
+        public static int GetAge()
+        {
+            int MaxAge = ageDistriAndWeight.Length;
+            double sum = 0;
+            for (int i=0; i< MaxAge; i++)
+            {
+                sum += ageDistriAndWeight[i];
+            }
+            double target = RandomGen.getDouble() * sum;
+            double targetSum = 0;
+            int age = 0;
+            for (int i=0; i<MaxAge; i++)
+            {
+                targetSum += ageDistriAndWeight[i];
+                if (targetSum > target)
+                {
+                    age = i;
+                    break;
+                }
+            }
+            return age;
         }
         #endregion
     }
