@@ -23,6 +23,14 @@ namespace meisai.persons.relation
                 }
             }
         }
+        public Person findRelation(PersonRelationType type)
+        {
+            foreach (SingleRelation x in relations)
+            {
+                if (x.type == type) return x.targetPerson;
+            }
+            return null;
+        }
     }
     public enum PersonRelationType { NULL, Father, Mother, Child, Wife, Husband};
     public class SingleRelation

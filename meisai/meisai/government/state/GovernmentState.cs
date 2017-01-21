@@ -22,7 +22,8 @@ namespace meisai.government.state
         public Int64 allConsumption =0;
         //失业者
         public int jobless = 0;
-
+        //这一年发的给孩子的基础救助
+        public int govChildrenFee = 0;
 
 
 

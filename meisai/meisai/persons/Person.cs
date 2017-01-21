@@ -2,6 +2,7 @@
 using meisai.persons.money;
 using meisai.persons.relation;
 using meisai.persons.state;
+using meisai.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,12 @@ namespace meisai.persons
         public PersonMoney money = new PersonMoney();
         public PersonCareer career = new PersonCareer();
         public PersonRelationShip relationShip = new PersonRelationShip();
+        public int childNeedGovFee = 0;
 
         //这个是每一段时间以后调用一下，人可以挣钱，花钱，交换钱，交友，生子等等
         public void deltaTAfter(int day = 365)
         {
+            childNeedGovFee = 0;
             state.deltaTAfter(day);
             money.deltaTAfter(state, day);
             state.Death(state.Deathrate(state.Age,money));
@@ -52,14 +55,75 @@ namespace meisai.persons
                     }
                 }
             }
-            for (int i=0; i<relationShip.relations.Count; i++)
+            if (state.Age < AllParameter.graduateage && state.education.studying)
             {
-                if (relationShip.relations[i].type == PersonRelationType.Child &&
-                    relationShip.relations[i].targetPerson.state.Age < 18)
+                //需要向父母索要生活费和学费
+                //先要生活费，如果没有，则解除关系，另一方付全部学费，如果不行，则辍学
+                Person father = relationShip.findRelation(PersonRelationType.Father);
+                Person mother = relationShip.findRelation(PersonRelationType.Mother);
+                bool canFatherConsumption = father.tryGetBasisConsumption();
+                bool canMotherConsumption = mother.tryGetBasisConsumption();
+                if (!canFatherConsumption)
                 {
-                    //是孩子！！！要付孩子的教育费
+                    father.relationShip.deleteRelationWith(this);
+                    relationShip.deleteRelationWith(father);
+                    father = null;
+                    childNeedGovFee += AllParameter.childbasicconsumption;
+                }
+                if (!canMotherConsumption)
+                {
+                    mother.relationShip.deleteRelationWith(this);
+                    relationShip.deleteRelationWith(mother);
+                    mother = null;
+                    childNeedGovFee += AllParameter.childbasicconsumption;
+                }
+                //再索要学费，这时候没有付生活费的已经解除关系了
+                int homeEducationFee = (int)((1 - AllParameter.gov_edu_rate) *
+                    AllParameter.bassic_edu_fee * 
+                    Math.Sqrt(state.education.EduLevel));
+                if (father != null && mother != null)
+                {
+                    //学费一人一半
+                    bool faTuition = father.tryGetTuition(homeEducationFee / 2);
+                    bool maTuition = mother.tryGetTuition(homeEducationFee / 2);
+                    if (!faTuition && !maTuition)
+                    {
+                        //直接辍学
+                        state.education.offStudy();
+                    }
+                    else if (faTuition && !maTuition)
+                    {
+                        bool faTuition2 = 
+                            father.tryGetTuition(homeEducationFee / 2);
+                        if (!faTuition2) state.education.offStudy();
+                    }
+                    else if (!faTuition && maTuition)
+                    {
+                        bool maTuition2 = 
+                            mother.tryGetTuition(homeEducationFee / 2);
+                        if (!maTuition2) state.education.offStudy();
+                    }
+                }
+                else if (father == null && mother == null)
+                {
+                    //直接辍学
+                    state.education.offStudy();
+                }
+                else if (father != null)
+                {
+                    //爸爸付全部
+                    bool Tuition = father.tryGetTuition(homeEducationFee);
+                    if (!Tuition) state.education.offStudy();
+                }
+                else if (mother != null)
+                {
+                    //妈妈付全部
+                    bool Tuition = mother.tryGetTuition(homeEducationFee);
+                    if (!Tuition) state.education.offStudy();
                 }
             }
+            //开始学习！！！！！
+            state.education.getstudydeltaT(day);
         }
         public int getMyMoney() => money.money;
 
@@ -71,6 +135,29 @@ namespace meisai.persons
             //幸福 
         }
 
+        public bool tryGetBasisConsumption()
+        {
+            if (AllParameter.childbasicconsumption > money.money)
+            {
+                money.money -= AllParameter.childbasicconsumption;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool tryGetTuition(int tuition)
+        {
+            if (tuition < money.money)
+            {
+                //负的起
+                money.money -= tuition;
+                return true;
+            }
+            return false;
+        }
 
     }
 }

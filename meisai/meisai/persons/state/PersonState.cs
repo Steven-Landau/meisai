@@ -81,13 +81,14 @@ namespace meisai.persons.state
     {
         //教育水平
         public double EduLevel = 1;
-        public bool studying = false;
+        public bool studying = true;
 
         public void getstudydeltaT(int day)
         {
-            
-            EduLevel++;
+            if (studying) EduLevel++;
         }
+
+        public void offStudy() => studying = false;
     }
 
 }

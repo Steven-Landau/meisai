@@ -69,6 +69,13 @@ namespace meisai.government
             }
             state.govMoney += state.gov_tax;
             state.govMoney -= state.gov_wel_expen;
+            //政府发给孩子的救助
+            state.govChildrenFee = 0;
+            foreach (Person person in personList)
+            {
+                state.govChildrenFee += person.childNeedGovFee;
+            }
+            state.govMoney -= state.govChildrenFee;
             //死人
             for (int i = 0; i < personList.Count; i++)
             {

@@ -36,11 +36,15 @@ namespace meisai.persons.money
         {
             int product_money;
             welfareMoney = 0;
-            if (state.Age < AllParameter.graduateage || 
-                state.Age > AllParameter.retireage)
+            if (state.Age > AllParameter.retireage)
             {
                 product_money = 0;
                 welfareMoney = AllParameter.basicconsumption;
+            }
+            else if (state.education.studying)
+            {
+                product_money = 0;
+                welfareMoney = 0;
             }
             else
             {
@@ -69,7 +73,7 @@ namespace meisai.persons.money
         public int consumption(PersonState state)
         {
             int consumption_;
-            if (state.Age < AllParameter.graduateage || state.Age > AllParameter.retireage)
+            if (state.education.studying || state.Age > AllParameter.retireage)
             {
                 consumption_ = AllParameter.basicconsumption;
             }

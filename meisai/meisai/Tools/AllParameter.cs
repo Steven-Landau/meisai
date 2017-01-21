@@ -115,7 +115,7 @@ namespace meisai.Tools
         //基础学费
         public static int bassic_edu_fee = 1000;
         //政府承担学费比例
-        public static int gov_edu_rate = 1;
+        public static double gov_edu_rate = 0.5;
         #endregion
 
         #region 颜色显示
