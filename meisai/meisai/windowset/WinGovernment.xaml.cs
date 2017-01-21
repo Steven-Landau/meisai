@@ -24,6 +24,9 @@ namespace meisai.windowset
 
         public WinGovernment(Government goverment_)
         {
+            this.WindowStartupLocation = WindowStartupLocation.Manual;
+            this.Left = 0;
+            this.Top = 500;
             goverment = goverment_;
             InitializeComponent();
             

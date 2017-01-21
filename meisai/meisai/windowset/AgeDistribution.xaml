@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:meisai.windowset"
         xmlns:windowBasis="clr-namespace:meisai.windowset.basis"
         mc:Ignorable="d"
-        Title="年龄分布" Height="300" Width="596">
+        Title="年龄分布" Height="300" Width="600">
     <Grid>
         <windowBasis:Histogram x:Name="histogram" Margin="56.534,0,0,40.24"/>
         <Label x:Name="label" Content="1%" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>

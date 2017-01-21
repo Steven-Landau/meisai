@@ -1,0 +1,22 @@
+﻿<Window x:Class="meisai.windowset.GovernmentControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:meisai.windowset"
+        xmlns:windowBasis="clr-namespace:meisai.windowset.basis"
+        mc:Ignorable="d"
+        Title="GovernmentControl" Height="703.2" Width="320">
+    <Grid Width="310">
+        <windowBasis:SliderControl x:Name="slider1" Margin="0,61.2,0,0" VerticalAlignment="Top" d:LayoutOverrides="Height" HorizontalAlignment="Left" Width="300"/>
+        <windowBasis:SliderControl x:Name="slider2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" d:LayoutOverrides="Height" Margin="0,121.2,0,0"/>
+        <windowBasis:SliderControl x:Name="slider3" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" d:LayoutOverrides="Height" Margin="0,181.2,0,0"/>
+        <windowBasis:SliderControl x:Name="slider4" HorizontalAlignment="Left" Width="300" Margin="0,241.2,0,0" VerticalAlignment="Top" d:LayoutOverrides="Height"/>
+        <windowBasis:SliderControl x:Name="slider5" HorizontalAlignment="Left" Width="300" Margin="0,301.2,0,0" VerticalAlignment="Top" d:LayoutOverrides="Height"/>
+        <windowBasis:SliderControl x:Name="slider6" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" d:LayoutOverrides="Height" Margin="0,361.2,0,0"/>
+        <windowBasis:SliderControl x:Name="slider7" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" d:LayoutOverrides="Height" Margin="0,421.2,0,0"/>
+        <windowBasis:SliderControl x:Name="slider8" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" d:LayoutOverrides="Height" Margin="0,481.2,0,0"/>
+        <windowBasis:SliderControl x:Name="slider9" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" d:LayoutOverrides="Height" Margin="0,541.2,0,0"/>
+        <windowBasis:SliderControl x:Name="slider0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" d:LayoutOverrides="Height" Margin="0,1.2,0,0"/>
+    </Grid>
+</Window>

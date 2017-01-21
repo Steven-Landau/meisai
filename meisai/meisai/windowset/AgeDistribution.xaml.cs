@@ -26,6 +26,9 @@ namespace meisai.windowset
 
         public AgeDistribution(Government goverment_)
         {
+            this.WindowStartupLocation = WindowStartupLocation.Manual;
+            this.Left = 0;
+            this.Top = 0;
             goverment = goverment_;
             InitializeComponent();
             //this.AddChild(histogram);

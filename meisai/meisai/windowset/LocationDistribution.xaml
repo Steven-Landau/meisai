@@ -8,7 +8,10 @@
         mc:Ignorable="d"
         Title="人口分布图" Height="664.2" Width="600">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <windowBasis:DotMap x:Name="dotMap" Margin="0,0,0,79.2"/>
-        <ToggleButton x:Name="refreshenable" Content="是否开启刷新" HorizontalAlignment="Left" Margin="18.8,0,0,18.8" VerticalAlignment="Bottom" Height="40.2" Width="117.153"/>
+        <ToggleButton x:Name="refreshenable" Content="是否开启刷新" Margin="18.8,0,0,18.8" VerticalAlignment="Bottom" Height="40.2" HorizontalAlignment="Left" Width="116.885"/>
     </Grid>
 </Window>

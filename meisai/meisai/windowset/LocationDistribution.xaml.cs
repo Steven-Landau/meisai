@@ -24,6 +24,9 @@ namespace meisai.windowset
 
         public LocationDistribution(Government goverment_)
         {
+            this.WindowStartupLocation = WindowStartupLocation.Manual;
+            this.Left = 600;
+            this.Top = 0;
             goverment = goverment_;
             InitializeComponent();
             refreshenable.Checked += Refreshenable_Checked;

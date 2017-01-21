@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:meisai"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="200" Width="600">
     <Grid>
         <Label x:Name="label" Content="天，相当于地球上：" Height="26.294" Margin="195.876,10,206.448,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlockday" Height="14.873" Margin="59.991,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFD2CFEB" HorizontalAlignment="Left" Width="130.885"><Run Text="0"/><LineBreak/><Run/></TextBlock>

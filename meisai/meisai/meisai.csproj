@@ -67,6 +67,13 @@
     <Compile Include="windowset\basis\Histogram.xaml.cs">
       <DependentUpon>Histogram.xaml</DependentUpon>
     </Compile>
+    <Compile Include="windowset\basis\SliderControl.xaml.cs">
+      <DependentUpon>SliderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windowset\basis\SliderControlData.cs" />
+    <Compile Include="windowset\GovernmentControl.xaml.cs">
+      <DependentUpon>GovernmentControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windowset\LocationDistribution.xaml.cs">
       <DependentUpon>LocationDistribution.xaml</DependentUpon>
     </Compile>
@@ -96,6 +103,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="windowset\basis\Histogram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windowset\basis\SliderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windowset\GovernmentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

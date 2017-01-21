@@ -33,10 +33,14 @@ namespace meisai
         WinGovernment winGovernment;
         AgeDistribution ageDistribution;
         LocationDistribution locationDistribution;
+        GovernmentControl governmentControl;
         int nowDay = 0;
 
         public MainWindow() 
         {
+            this.WindowStartupLocation = WindowStartupLocation.Manual;
+            this.Left = 0;
+            this.Top = 300;
             InitializeComponent();
             RandomGen.Initiate();
             government = new Government();
@@ -55,7 +59,8 @@ namespace meisai
                 locationDistribution = new LocationDistribution(government);
                 locationDistribution.Show();
             }
-
+            governmentControl = new GovernmentControl();
+            governmentControl.Show();
             buttonstartayear.Click += Buttonstartayear_Click;
             MathematicaOut.Out("test", "A", new String[] { "a", "b" });
         }
@@ -86,6 +91,8 @@ namespace meisai
                 locationDistribution.CanBeClose = true;
                 locationDistribution.Close();
             }
+            governmentControl.CanBeClose = true;
+            governmentControl.Close();
             base.OnClosing(e);
         }
 
