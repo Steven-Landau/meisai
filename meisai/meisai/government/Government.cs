@@ -223,6 +223,8 @@ namespace meisai.government
                     femaleM.state.position.X) / 2;
                 child.state.position.Y = (maleM.state.position.Y +
                     femaleM.state.position.Y) / 2;
+                child.state.gender = (RandomGen.getDouble() > 0.5) ? 
+                    Gender.Female : Gender.Male;
                 //产假
                 maleM.state.maternalLeave = 1;
                 femaleM.state.maternalLeave = 2;

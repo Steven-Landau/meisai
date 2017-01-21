@@ -127,7 +127,7 @@ namespace meisai.Tools
         public static int MaxAge = 200;
         #endregion
         #region 婚姻生子
-        public static double marriageRate = 0.01;
+        public static double marriageRate = 0.05;
         public static int minMarriageAge = 18;
         public static int maxMarriageAge = 40;
         public static bool ifWillMarriage(double Lsquare)

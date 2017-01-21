@@ -54,6 +54,13 @@ namespace meisai.persons
                             break;
                     }
                 }
+                //所有的遗产继承给大儿子！！！
+                Person child = relationShip.findRelation(PersonRelationType.Child);
+                if (child != null)
+                {
+                    child.money.money += money.money;
+                    money.money = 0;
+                }
             }
             if (state.Age < AllParameter.graduateage && state.education.studying)
             {
