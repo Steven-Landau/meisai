@@ -24,16 +24,8 @@ namespace meisai.government
             for (int i = 0; i < 10000; i++)
             {
                 personList.Add(new Person());
-            }
-            /*//平均年龄分布
-            for (int i=0;i<10; i++)
-            {
-                for(int j=0;j<1000;j++)
-                {
-                    personList[1000 * i + j].state.Age = 10*i+(j+50)/100;
-                }
-            }*/
-            //线性年龄分布
+            }        
+            //平均年龄分布
             for(int i=0;i<10000;i++)
             {
                 personList[i].state.gender = (Gender)(i / 5000);
