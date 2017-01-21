@@ -66,9 +66,11 @@ namespace meisai.government
             {
                 state.gov_tax += person.money.taxMoney;
                 state.gov_wel_expen += person.money.welfareMoney;
+                state.gov_wel_maternal_expen += person.money.welfareMaternalLeave;
             }
             state.govMoney += state.gov_tax;
             state.govMoney -= state.gov_wel_expen;
+            state.govMoney -= state.gov_wel_maternal_expen;
             //政府发给孩子的救助
             state.govChildrenFee = 0;
             foreach (Person person in personList)
@@ -175,7 +177,8 @@ namespace meisai.government
                 //每个孩子都消费2倍的basicconsumption
                 if (person.money.money > AllParameter.childbasicconsumption && 
                     person.state.Age > AllParameter.minMarriageAge && 
-                    person.state.Age < AllParameter.maxMarriageAge)
+                    person.state.Age < AllParameter.maxMarriageAge &&
+                    person.state.maternalLeave == 0)
                 {
                     //可以付钱供养孩子
                     switch (person.state.gender)
@@ -219,6 +222,9 @@ namespace meisai.government
                     femaleM.state.position.X) / 2;
                 child.state.position.Y = (maleM.state.position.Y +
                     femaleM.state.position.Y) / 2;
+                //产假
+                maleM.state.maternalLeave = 1;
+                femaleM.state.maternalLeave = 2;
                 //添加三个人之间的关系
                 child.relationShip.relations.Add(new SingleRelation(
                     PersonRelationType.Father, maleM));
@@ -245,5 +251,6 @@ namespace meisai.government
         public long Gettax() => state.gov_tax;
         public long Getedu() => state.gov_edu_expen;
         public long Getwel() => state.gov_wel_expen;
+        public long GetwelMaternal() => state.gov_wel_maternal_expen;
     }
 }

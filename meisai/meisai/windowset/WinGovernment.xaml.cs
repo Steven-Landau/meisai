@@ -41,6 +41,7 @@ namespace meisai.windowset
             textBlock_edu_expen.Text = "" + goverment.Getedu();
             textBlock_wel_expen.Text = "" + goverment.Getwel();
             textBlock_tax.Text = "" + goverment.Gettax();
+            textBlock_wel_maternal.Text = "" + goverment.GetwelMaternal();
         }
 
         public bool CanBeClose = false;

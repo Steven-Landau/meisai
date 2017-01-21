@@ -61,65 +61,68 @@ namespace meisai.persons
                 //先要生活费，如果没有，则解除关系，另一方付全部学费，如果不行，则辍学
                 Person father = relationShip.findRelation(PersonRelationType.Father);
                 Person mother = relationShip.findRelation(PersonRelationType.Mother);
-                bool canFatherConsumption = father.tryGetBasisConsumption();
-                bool canMotherConsumption = mother.tryGetBasisConsumption();
-                if (!canFatherConsumption)
+                if (father != null || mother != null)
                 {
-                    father.relationShip.deleteRelationWith(this);
-                    relationShip.deleteRelationWith(father);
-                    father = null;
-                    childNeedGovFee += AllParameter.childbasicconsumption;
-                }
-                if (!canMotherConsumption)
-                {
-                    mother.relationShip.deleteRelationWith(this);
-                    relationShip.deleteRelationWith(mother);
-                    mother = null;
-                    childNeedGovFee += AllParameter.childbasicconsumption;
-                }
-                //再索要学费，这时候没有付生活费的已经解除关系了
-                int homeEducationFee = (int)((1 - AllParameter.gov_edu_rate) *
-                    AllParameter.bassic_edu_fee * 
-                    Math.Sqrt(state.education.EduLevel));
-                if (father != null && mother != null)
-                {
-                    //学费一人一半
-                    bool faTuition = father.tryGetTuition(homeEducationFee / 2);
-                    bool maTuition = mother.tryGetTuition(homeEducationFee / 2);
-                    if (!faTuition && !maTuition)
+                    bool canFatherConsumption = father.tryGetBasisConsumption();
+                    bool canMotherConsumption = mother.tryGetBasisConsumption();
+                    if (!canFatherConsumption)
+                    {
+                        father.relationShip.deleteRelationWith(this);
+                        relationShip.deleteRelationWith(father);
+                        father = null;
+                        childNeedGovFee += AllParameter.childbasicconsumption;
+                    }
+                    if (!canMotherConsumption)
+                    {
+                        mother.relationShip.deleteRelationWith(this);
+                        relationShip.deleteRelationWith(mother);
+                        mother = null;
+                        childNeedGovFee += AllParameter.childbasicconsumption;
+                    }
+                    //再索要学费，这时候没有付生活费的已经解除关系了
+                    int homeEducationFee = (int)((1 - AllParameter.gov_edu_rate) *
+                        AllParameter.bassic_edu_fee *
+                        Math.Sqrt(state.education.EduLevel));
+                    if (father != null && mother != null)
+                    {
+                        //学费一人一半
+                        bool faTuition = father.tryGetTuition(homeEducationFee / 2);
+                        bool maTuition = mother.tryGetTuition(homeEducationFee / 2);
+                        if (!faTuition && !maTuition)
+                        {
+                            //直接辍学
+                            state.education.offStudy();
+                        }
+                        else if (faTuition && !maTuition)
+                        {
+                            bool faTuition2 =
+                                father.tryGetTuition(homeEducationFee / 2);
+                            if (!faTuition2) state.education.offStudy();
+                        }
+                        else if (!faTuition && maTuition)
+                        {
+                            bool maTuition2 =
+                                mother.tryGetTuition(homeEducationFee / 2);
+                            if (!maTuition2) state.education.offStudy();
+                        }
+                    }
+                    else if (father == null && mother == null)
                     {
                         //直接辍学
                         state.education.offStudy();
                     }
-                    else if (faTuition && !maTuition)
+                    else if (father != null)
                     {
-                        bool faTuition2 = 
-                            father.tryGetTuition(homeEducationFee / 2);
-                        if (!faTuition2) state.education.offStudy();
+                        //爸爸付全部
+                        bool Tuition = father.tryGetTuition(homeEducationFee);
+                        if (!Tuition) state.education.offStudy();
                     }
-                    else if (!faTuition && maTuition)
+                    else if (mother != null)
                     {
-                        bool maTuition2 = 
-                            mother.tryGetTuition(homeEducationFee / 2);
-                        if (!maTuition2) state.education.offStudy();
+                        //妈妈付全部
+                        bool Tuition = mother.tryGetTuition(homeEducationFee);
+                        if (!Tuition) state.education.offStudy();
                     }
-                }
-                else if (father == null && mother == null)
-                {
-                    //直接辍学
-                    state.education.offStudy();
-                }
-                else if (father != null)
-                {
-                    //爸爸付全部
-                    bool Tuition = father.tryGetTuition(homeEducationFee);
-                    if (!Tuition) state.education.offStudy();
-                }
-                else if (mother != null)
-                {
-                    //妈妈付全部
-                    bool Tuition = mother.tryGetTuition(homeEducationFee);
-                    if (!Tuition) state.education.offStudy();
                 }
             }
             //开始学习！！！！！

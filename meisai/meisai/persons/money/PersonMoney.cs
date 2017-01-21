@@ -21,15 +21,23 @@ namespace meisai.persons.money
         public int taxMoney = 0;
         public int productMoney = 0;
         public int welfareMoney = 0;
+        public int welfareMaternalLeave = 0;
 
         //每一段时间调用以下函数，个人挣钱和花钱
         public void deltaTAfter(PersonState state, int day)
         {
             //挣钱 + 花钱
+            welfareMaternalLeave = 0;
             productMoney = product(state);
             taxMoney = tax();
             money += productMoney - taxMoney + welfareMoney;
             money -= consumption(state);
+            if (state.maternalLeave != 0)
+            {
+                welfareMaternalLeave = productMoney;
+                productMoney = 0;
+                state.maternalLeave--;
+            }
         }
         //生产
         public int product(PersonState state, int day = 365)

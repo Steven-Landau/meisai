@@ -54,6 +54,8 @@ namespace meisai.persons.state
         //地理位置，先随机生成
         public Point position = new Point(RandomGen.getDouble(), 
             RandomGen.getDouble());
+        //剩余的产假年数
+        public int maternalLeave = 0;
 
 
         public void Die()
