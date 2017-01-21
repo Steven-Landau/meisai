@@ -31,6 +31,8 @@ namespace meisai.windowset
         }
         public void Refresh()
         {
+            histogram.maxData = 1;
+
             histogram.Refresh();
         }
     }

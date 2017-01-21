@@ -6,8 +6,11 @@
         xmlns:local="clr-namespace:meisai.windowset"
         xmlns:wyHistogram="clr-namespace:meisai.windowset.basis"
         mc:Ignorable="d"
-        Title="AgeDistribution" Height="300" Width="300">
+        Title="AgeDistribution" Height="300" Width="596">
     <Grid>
-        <wyHistogram:Histogram x:Name="histogram" Height="196.8" VerticalAlignment="Top"/>
+        <wyHistogram:Histogram x:Name="histogram" Margin="56.534,0,0,40.24"/>
+        <Label x:Name="label" Content="1%" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy" Content="0%" HorizontalAlignment="Left" Margin="10,0,0,35.2" VerticalAlignment="Bottom"/>
+        <Label x:Name="label_Copy1" Content="人口分布，通过颜色来显示数字（棕红橙黄绿蓝紫灰白黑）" Margin="10,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="319.98"/>
     </Grid>
 </Window>
