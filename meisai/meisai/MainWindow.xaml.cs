@@ -57,6 +57,7 @@ namespace meisai
             }
 
             buttonstartayear.Click += Buttonstartayear_Click;
+            MathematicaOut.Out("test", "A", new String[] { "a", "b" });
         }
         private void Refresh()
         {

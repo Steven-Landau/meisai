@@ -1,4 +1,5 @@
 ﻿using meisai.government;
+using meisai.Tools;
 using meisai.windowset.basis;
 using System;
 using System.Collections.Generic;
@@ -33,8 +34,10 @@ namespace meisai.windowset
         {
             histogram.maxData = 1;
             histogram.data = goverment.ageDistrib;
-
             histogram.Refresh();
+
+            //输出到mathematica
+            MathematicaOut.Out("ageDistribution", "age", goverment.ageDistrib);
         }
 
         public bool CanBeClose = false;

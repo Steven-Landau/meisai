@@ -56,6 +56,7 @@
     </ApplicationDefinition>
     <Compile Include="Tools\AllParameter.cs" />
     <Compile Include="Tools\IntPair.cs" />
+    <Compile Include="Tools\MathematicaOut.cs" />
     <Compile Include="Tools\RandomGen.cs" />
     <Compile Include="windowset\AgeDistribution.xaml.cs">
       <DependentUpon>AgeDistribution.xaml</DependentUpon>
