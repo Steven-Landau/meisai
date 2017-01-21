@@ -68,6 +68,22 @@ namespace meisai.persons.money
         public int consumption(PersonState state)
         {
             int consumption_;
+            
+            // Determine taxmode  ,  stupid
+            AllParameter.TaxMode taxmode;
+            if(productMoney < 10000)
+                taxmode = AllParameter.TaxMode.Zero;
+            else if(productMoney < 20000)
+                taxmode = AllParameter.TaxMode.Low;
+            else if(productMoney < 50000)
+                taxmode = AllParameter.TaxMode.Medium;
+            else if(productMoney < 80000)
+                taxmode = AllParameter.TaxMode.High;
+            else    
+                taxmode = AllParameter.TaxMode.Extreme;
+
+            // I am a pig I only write if else.....
+            
             if (state.Age < AllParameter.graduateage)
             {
                 consumption_ = AllParameter.basicconsumtion;
@@ -80,7 +96,7 @@ namespace meisai.persons.money
             {
                 consumption_ = (int)(AllParameter.basicconsumtion + 
                     AllParameter.consumetendency(state.race, state.gender) * 
-                    (productMoney - AllParameter.basicconsumtion) * (1 - AllParameter.taxRate()));
+                    (productMoney - AllParameter.basicconsumtion) * (1 - AllParameter.taxRate(taxmode)));
             }
             //Console.WriteLine(consumption_);
             return consumption_;
