@@ -25,7 +25,7 @@ namespace meisai.persons
         {
             state.deltaTAfter(day);
             money.deltaTAfter(state, day);
-            state.Death(state.Deathrate(state.Age));
+            state.Death(state.Deathrate(state.Age,money));
 
         }
         public int getMyMoney() => money.money;

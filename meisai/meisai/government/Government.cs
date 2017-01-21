@@ -1,5 +1,6 @@
 ﻿using meisai.government.state;
 using meisai.persons;
+using meisai.persons.state;
 using meisai.Tools;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,8 @@ namespace meisai.government
             //线性年龄分布
             for(int i=0;i<10000;i++)
             {
-                personList[i].state.gender = ()i / 5000;
+                personList[i].state.gender = (Gender)(i / 5000);
+                personList[i].state.race = (Race)(i / 5000);
                 personList[i].state.Age = 18 + (36 * (i-5000)) / 10000;
             }
         }
