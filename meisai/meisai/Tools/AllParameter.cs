@@ -11,9 +11,9 @@ namespace meisai.Tools
     {
         
         //基础消费
-        public static int basicconsumtion = 500;
+        public static int basicconsumtion = 5000;
         //退休年龄
-        public static int retireage = 60;
+        public static int retireage = 52;
         public static int graduateage = 18;
         ////基础死亡率，只要是个人就会有这么大概率死
         //public static double basicdeathrate = 0.008;

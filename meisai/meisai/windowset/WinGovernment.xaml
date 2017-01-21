@@ -22,12 +22,15 @@
         <TextBlock x:Name="textBlockavermoney" TextWrapping="Wrap" Margin="83.234,93.399,0,0" HorizontalAlignment="Left" Width="265.268" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top"><Run Text="0"/><LineBreak/><Run/></TextBlock>
         <Label x:Name="label_Copy5" Content="平均资产：" HorizontalAlignment="Left" Height="26.133" Margin="10.168,88.399,0,0" VerticalAlignment="Top" Width="73.066"/>
         <Label x:Name="label_Copy6" Content="HXB" HorizontalAlignment="Left" Height="26.133" Margin="354.734,88.399,0,0" VerticalAlignment="Top" Width="73.066"/>
-        <Label x:Name="label_Copy7" Content="人均生产" HorizontalAlignment="Left" Margin="5,0,0,95.702" Width="73.066" Height="26.133" VerticalAlignment="Bottom"/>
-        <TextBlock x:Name="textBlockaverproduct" TextWrapping="Wrap" Margin="83.066,0,0,101.902" HorizontalAlignment="Left" Width="265.268" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Bottom"><Run Text="0"/><LineBreak/><Run/></TextBlock>
-        <Label x:Name="label_Copy8" Content="HXB" HorizontalAlignment="Left" Margin="354.734,119.532,0,126.835" Width="73.066"/>
-        <Label x:Name="label_Copy9" Content="HXB" HorizontalAlignment="Left" Margin="354.734,0,0,95.702" Width="73.066" Height="26.133" VerticalAlignment="Bottom"/>
-        <TextBlock x:Name="textBlockaverconsumption" TextWrapping="Wrap" Margin="79.466,119.532,0,0" HorizontalAlignment="Left" Width="265.268" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top"><Run Text="0"/><LineBreak/><Run/></TextBlock>
-        <Label x:Name="label_Copy10" Content="人均消费" HorizontalAlignment="Left" Margin="6.4,114.532,0,131.835" Width="73.066"/>
+        <Label x:Name="label_Copy7" Content="失业率" HorizontalAlignment="Left" Margin="10,0,0,42.631" Width="63.066" Height="26.133" VerticalAlignment="Bottom"/>
+        <TextBlock x:Name="textBlockaverproduct" TextWrapping="Wrap" Margin="79.466,0,0,86.756" HorizontalAlignment="Left" Width="265.268" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Bottom"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <Label x:Name="label_Copy8" Content="HXB" HorizontalAlignment="Left" Margin="354.734,125.732,0,120.635" Width="73.066"/>
+        <Label x:Name="label_Copy9" Content="HXB" HorizontalAlignment="Left" Margin="353.166,0,0,36.431" Width="73.066" Height="26.133" VerticalAlignment="Bottom"/>
+        <TextBlock x:Name="textBlockaverconsumption" TextWrapping="Wrap" Margin="83.066,130.732,0,126.835" HorizontalAlignment="Left" Width="265.268" Background="#FF5CFCFF"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <Label x:Name="label_Copy10" Content="人均消费" HorizontalAlignment="Left" Margin="10,126.932,0,120.635" Width="58.066"/>
+        <TextBlock x:Name="joblessrate" TextWrapping="Wrap" Margin="79.466,0,0,42.631" HorizontalAlignment="Left" Width="265.268" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Bottom"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <Label x:Name="label_Copy11" Content="人均生产" HorizontalAlignment="Left" Margin="10,0,0,84.59" Width="58.066" Height="24.933" VerticalAlignment="Bottom"/>
+        <Label x:Name="label_Copy12" Content="HXB" HorizontalAlignment="Left" Margin="354.734,0,0,80.556" Width="73.066" Height="26.133" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Window>

@@ -16,8 +16,8 @@ namespace meisai.persons.money
     {
         //为简化起见，先存一个money，以后可以增加贷款信用等等
         public int money = AllParameter.init_money;
-        public double producttendency = 0;
-        public int welfare = 0;
+        //public double producttendency = 0;
+        //public int welfare = 0;
         public int tax = 0;//交税
         public int productMoney = 0;
         public int welfareMoney = 0;
@@ -46,7 +46,7 @@ namespace meisai.persons.money
                 //先获得系数，即此系数*已有资金=新增资金
                // Console.WriteLine(state.IQ);
                 double product_money_d =
-                    (AllParameter.IQproductparameter*state.IQ)
+                  (AllParameter.IQproductparameter*state.IQ)
                     * Math.Sqrt(money) *
                     AllParameter.productOfAge(state.Age) *
                     Math.Sqrt(state.education.EduLevel) *        
@@ -68,21 +68,21 @@ namespace meisai.persons.money
         public int consumption(PersonState state)
         {
             int consumption_;
-            if (state.Age < AllParameter.graduateage)
+            if (state.Age < AllParameter.graduateage || state.Age > AllParameter.retireage)
             {
                 consumption_ = AllParameter.basicconsumtion;
             }
-            else if (state.Age > AllParameter.retireage)
+            else if (productMoney == 0)
             {
                 consumption_ = AllParameter.basicconsumtion;
             }
             else
             {
-                consumption_ = (int)(AllParameter.basicconsumtion + 
-                    AllParameter.consumetendency(state.race, state.gender) * 
+                consumption_ = (int)(AllParameter.basicconsumtion +
+                    AllParameter.consumetendency(state.race, state.gender) *
                     (productMoney - AllParameter.basicconsumtion) * (1 - AllParameter.taxRate()));
             }
-            //Console.WriteLine(consumption_);
+           // Console.WriteLine(consumption_);
             return consumption_;
         }
 
