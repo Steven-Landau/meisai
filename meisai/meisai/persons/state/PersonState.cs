@@ -50,6 +50,9 @@ namespace meisai.persons.state
         public bool IfWillDie = false;
         //教育程度
         public PersonEducation education = new PersonEducation();
+        //地理位置，先随机生成
+        public Point position = new Point(RandomGen.getDouble(), 
+            RandomGen.getDouble());
 
 
         public void Die()

@@ -12,7 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.ComponentModel;
 
 namespace meisai.windowset
 {
@@ -45,7 +44,7 @@ namespace meisai.windowset
         }
 
         public bool CanBeClose = false;
-        protected override void OnClosing(CancelEventArgs e)
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             if (CanBeClose)
             {

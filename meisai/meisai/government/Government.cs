@@ -16,7 +16,8 @@ namespace meisai.government
         static List<Person> personList = new List<Person>();
         GovernmentState state = new GovernmentState();
         //年龄分布，从0岁到99岁
-        public double[] ageDistrib = new double[100];
+        public double[] ageDistrib = new double[AllParameter.MaxAge];
+        public Point[] positions;
 
         public Government()
         {//初态
@@ -80,10 +81,12 @@ namespace meisai.government
                     continue;
                 }
             }
-            
+
             //统计新的状态
             sumUpStates();
             getAgeAttribution();
+            updatepositions();
+            updateID();
         }
         private void sumUpStates()
         {
@@ -122,6 +125,21 @@ namespace meisai.government
             {
                 MessageBox.Show("由于有" + yichu + "人年龄不小于" + ageDistrib.Length + 
                     "岁，导致年龄分布没有显示它们");
+            }
+        }
+        private void updatepositions()
+        {
+            positions = new Point[personList.Count];
+            for (int i=0; i< personList.Count; i++)
+            {
+                positions[i] = personList[i].state.position;
+            }
+        }
+        private void updateID()
+        {
+            for (int i=0; i<personList.Count; i++)
+            {
+                personList[i].nowID = i;
             }
         }
         public long GetGovMoney() => state.govMoney;

@@ -15,6 +15,7 @@ namespace meisai.persons
      */
     class Person
     {
+        public int nowID = 0; //这个是当前状态下的个人编号，在government的personlist里
         public PersonState state = new PersonState();
         public PersonMoney money = new PersonMoney();
         public PersonCareer career = new PersonCareer();

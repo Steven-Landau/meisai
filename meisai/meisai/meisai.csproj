@@ -60,11 +60,14 @@
     <Compile Include="windowset\AgeDistribution.xaml.cs">
       <DependentUpon>AgeDistribution.xaml</DependentUpon>
     </Compile>
-    <Compile Include="windowset\basis\dotMap.xaml.cs">
-      <DependentUpon>dotMap.xaml</DependentUpon>
+    <Compile Include="windowset\basis\DotMap.xaml.cs">
+      <DependentUpon>DotMap.xaml</DependentUpon>
     </Compile>
     <Compile Include="windowset\basis\Histogram.xaml.cs">
       <DependentUpon>Histogram.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windowset\LocationDistribution.xaml.cs">
+      <DependentUpon>LocationDistribution.xaml</DependentUpon>
     </Compile>
     <Compile Include="windowset\WinGovernment.xaml.cs">
       <DependentUpon>WinGovernment.xaml</DependentUpon>
@@ -87,11 +90,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="windowset\basis\dotMap.xaml">
+    <Page Include="windowset\basis\DotMap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="windowset\basis\Histogram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windowset\LocationDistribution.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

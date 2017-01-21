@@ -121,5 +121,8 @@ namespace meisai.Tools
             Brushes.Orange, Brushes.Yellow, Brushes.Green, Brushes.Blue,
             Brushes.Purple, Brushes.Gray, Brushes.White, Brushes.Black};
         #endregion
+        #region 年龄显示配置
+        public static int MaxAge = 200;
+        #endregion
     }
 }

@@ -24,9 +24,15 @@ namespace meisai
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region 组件开关
+        bool winGovernmentOnOff = true;
+        bool ageDistributionOnOff = true;
+        bool locationDistributionOnOff = true;
+        #endregion
         Government government;
         WinGovernment winGovernment;
         AgeDistribution ageDistribution;
+        LocationDistribution locationDistribution;
         int nowDay = 0;
 
         public MainWindow() 
@@ -34,10 +40,21 @@ namespace meisai
             InitializeComponent();
             RandomGen.Initiate();
             government = new Government();
-            winGovernment = new WinGovernment(government);
-            ageDistribution = new AgeDistribution(government);
-            winGovernment.Show();
-            ageDistribution.Show();
+            if (winGovernmentOnOff)
+            {
+                winGovernment = new WinGovernment(government);
+                winGovernment.Show();
+            }
+            if (ageDistributionOnOff)
+            {
+                ageDistribution = new AgeDistribution(government);
+                ageDistribution.Show();
+            }
+            if (locationDistributionOnOff)
+            {
+                locationDistribution = new LocationDistribution(government);
+                locationDistribution.Show();
+            }
 
             buttonstartayear.Click += Buttonstartayear_Click;
         }
@@ -46,8 +63,29 @@ namespace meisai
             textBlockday.Text = "" + nowDay;
             textBlockyear.Text = "" + (nowDay / 365);
 
-            winGovernment.Refresh();
-            ageDistribution.Refresh();
+            if (winGovernmentOnOff) winGovernment.Refresh();
+            if (ageDistributionOnOff) ageDistribution.Refresh();
+            if (locationDistributionOnOff) locationDistribution.Refresh();
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if (winGovernmentOnOff)
+            {
+                winGovernment.CanBeClose = true;
+                winGovernment.Close();
+            }
+            if (ageDistributionOnOff)
+            {
+                ageDistribution.CanBeClose = true;
+                ageDistribution.Close();
+            }
+            if (locationDistributionOnOff)
+            {
+                locationDistribution.CanBeClose = true;
+                locationDistribution.Close();
+            }
+            base.OnClosing(e);
         }
 
         private void deltaTAfter(int day = 365)
@@ -62,13 +100,6 @@ namespace meisai
         private void Buttonstartayear_Click(object sender, RoutedEventArgs e)
         {
             deltaTAfter(365);
-        }
-
-        protected override void OnClosing(CancelEventArgs e)
-        {
-            winGovernment.CanBeClose = true;
-            winGovernment.Close();
-            base.OnClosing(e);
         }
     }
 }
