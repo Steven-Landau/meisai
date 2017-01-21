@@ -16,6 +16,9 @@ namespace meisai.government.state
         public double GDPvarience;//国内生产总值和方差
         public int GDH;
         public double GDHvarience;//国内幸福总值和方差
+        public Int64 allProduct=0;
+        public Int64 allConsumption =0;
+
 
 
     }

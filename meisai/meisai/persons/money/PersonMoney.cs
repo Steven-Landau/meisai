@@ -17,7 +17,6 @@ namespace meisai.persons.money
         //为简化起见，先存一个money，以后可以增加贷款信用等等
         public int money = AllParameter.init_money;
         public double producttendency = 0;
-        public int taxrate = 0;
         public int welfare = 0;
         public int tax = 0;//交税
         public int productMoney = 0;
@@ -45,14 +44,16 @@ namespace meisai.persons.money
             else
             {
                 //先获得系数，即此系数*已有资金=新增资金
-                double product_money_d = Math.Sqrt(money) *
+               // Console.WriteLine(state.IQ);
+                double product_money_d =
+                    (AllParameter.IQproductparameter*state.IQ)
+                    * Math.Sqrt(money) *
                     AllParameter.productOfAge(state.Age) *
-                    Math.Sqrt(state.education.EduLevel) *
-                    AllParameter.productparameter *
+                    Math.Sqrt(state.education.EduLevel) *        
                     AllParameter.producttendency(state.race);
                 //Console.WriteLine(product_money_d);
                 product_money = (int)product_money_d;
-                if (product_money < AllParameter.minimumwage)
+               if (product_money < AllParameter.minimumwage)
                 {
                     //失业了
                     product_money = 0;
@@ -60,6 +61,7 @@ namespace meisai.persons.money
                 }
             }
             tax = (int)(product_money * AllParameter.taxRate());
+           // Console.WriteLine(product_money);
             return product_money;
         }
         //消费
@@ -78,7 +80,7 @@ namespace meisai.persons.money
             {
                 consumption_ = (int)(AllParameter.basicconsumtion + 
                     AllParameter.consumetendency(state.race, state.gender) * 
-                    (productMoney - AllParameter.basicconsumtion) * (1 - taxrate));
+                    (productMoney - AllParameter.basicconsumtion) * (1 - AllParameter.taxRate()));
             }
             //Console.WriteLine(consumption_);
             return consumption_;

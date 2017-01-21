@@ -15,54 +15,24 @@ namespace meisai.Tools
         //退休年龄
         public static int retireage = 60;
         public static int graduateage = 18;
-        //基础死亡率，只要是个人就会有这么大概率死
-        public static double basicdeathrate = 0.008;
-        //死亡率随年龄的二次函数的系数
-        public static double age_deathrate = 0.01;
-        //死亡率最低的点
-        public static int least_age_deathrate = 9;
+        ////基础死亡率，只要是个人就会有这么大概率死
+        //public static double basicdeathrate = 0.008;
+        ////死亡率随年龄的二次函数的系数
+        //public static double age_deathrate = 0.01;
+        ////死亡率最低的点
+        //public static int least_age_deathrate = 9;
 
-        #region 金钱
-        public static int init_money = 1000;
-        #endregion
-
+        #region 钱
+        //初始的钱
+        public static int init_money = 100000;
         #region 挣钱
         //失业最低工资
         public static int minimumwage = 10000;
-        //静态的挣钱系数
-        public static double productparameter = 0.08;
-        //倾向与性别和人种有关
-        #region 消费倾向
-        public static double consumetendency(Race race, Gender gender)
-        {
-            
-            double t1=1, t2=1;
-            switch(race)
-            {
-                case Race.Lazy:
-                    t1 = 0.1;
-                    break;
-                case Race.Creative:
-                    t1 = 0.9;
-                    break;
-                default: t1 = 1;
-                    break;
-            }
-            switch(gender)
-            {
-                case Gender.Female:
-                    t2 = 1.2;
-                    break;
-                case Gender.Male:
-                    t2 = 1;
-                    break;
-                default: t2 = 1;
-                    break;
-            }
+        
+        //工资——智商系数
+        public static double IQproductparameter = 1.6;
 
-            return t1*t2;
-        }
-        #endregion
+        //倾向与性别和人种有关
         #region 生产倾向
         public static double producttendency(Race race)
         {
@@ -82,7 +52,39 @@ namespace meisai.Tools
             return -(Age - 35) * (Age - 35) + 289;
         }
         #endregion
+        #region 消费倾向
+        public static double consumetendency(Race race, Gender gender)
+        {
 
+            double t1 = 1, t2 = 1;
+            switch (race)
+            {
+                case Race.Lazy:
+                    t1 = 1;
+                    break;
+                case Race.Creative:
+                    t1 = 0.9;
+                    break;
+                default:
+                    t1 = 1;
+                    break;
+            }
+            switch (gender)
+            {
+                case Gender.Female:
+                    t2 = 1.2;
+                    break;
+                case Gender.Male:
+                    t2 = 1;
+                    break;
+                default:
+                    t2 = 1;
+                    break;
+            }
+
+            return t1 * t2;
+        }
+        #endregion
         #region 税率
         public enum TaxMode { Low};
         public static TaxMode taxMode;
@@ -95,6 +97,7 @@ namespace meisai.Tools
             }
             return 0;
         }
+        #endregion
         #endregion
     }
 }

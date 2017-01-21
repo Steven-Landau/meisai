@@ -40,10 +40,14 @@ namespace meisai.government
                     continue;
                 }
             }
+            state.allConsumption = 0;
+            state.allProduct = 0;
             foreach (Person person in personList)
-            {
+            {            
                 state.govMoney += person.money.tax;
                 state.govMoney -= person.money.welfare;
+                state.allConsumption += person.money.consumption(person.state);
+                state.allProduct += person.money.product(person.state);
             }
             //统计新的状态
             sumUpStates();
@@ -59,6 +63,8 @@ namespace meisai.government
         }
         public Int64 GetGovMoney() => state.govMoney;
         public Int64 GetAllMoney() => state.allMoney;
+        public Int64 GetAllConsumption() => state.allConsumption;
+        public Int64 GetAllProduct() => state.allProduct;
         public int GetMenCount() => personList.Count;
     }
 }

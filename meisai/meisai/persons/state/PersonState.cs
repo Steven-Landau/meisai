@@ -13,6 +13,8 @@ namespace meisai.persons.state
      */
     public class PersonState
     {
+        //智商
+        public double IQ = 1.0 * RandomGen.getDouble(); 
         //性别
         public Gender gender = Gender.Male;
         //种族
