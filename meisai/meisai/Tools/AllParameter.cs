@@ -16,7 +16,7 @@ namespace meisai.Tools
         //孩子的单方基本消费
         public static int childbasicconsumption = 2500;
         //退休年龄
-        public static int retireage = 52;
+        public static int retireage = 60;
         public static int graduateage = 18;
         ////基础死亡率，只要是个人就会有这么大概率死
         //public static double basicdeathrate = 0.008;
@@ -33,7 +33,7 @@ namespace meisai.Tools
         public static int minimumwage = 10000;
         
         //工资——智商系数
-        public static double IQproductparameter = 1.6;
+        public static double IQproductparameter = 0.4;
 
         //倾向与性别和人种有关
         #region 生产倾向
@@ -52,7 +52,7 @@ namespace meisai.Tools
         //对年龄的函数，使用在PersonMoney的生产中
         public static int productOfAge(int Age)
         {
-            return -(Age - 35) * (Age - 35) + 289;
+            return -(Age) * (Age - 60) ;
         }
        
         #endregion
@@ -127,8 +127,8 @@ namespace meisai.Tools
         public static int MaxAge = 200;
         #endregion
         #region 婚姻生子
-        public static double marriageRate = 0;
-        public static int minMarriageAge = 18;
+        public static double marriageRate = 0.05;
+        public static int minMarriageAge = 20;
         public static int maxMarriageAge = 40;
         public static bool ifWillMarriage(double Lsquare)
         {

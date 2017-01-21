@@ -43,11 +43,8 @@ namespace meisai.persons.money
         public int product(PersonState state, int day = 365)
         {
             int product_money;
-            welfareMoney = 0;
-            //如果达到年龄，强制毕业并要求工作
-            if (state.Age > AllParameter.graduateage)
-                state.education.studying = false;
-            if (state.Age > AllParameter.retireage)
+            welfareMoney = 0;         
+            if (state.isretiring)
             {
                 product_money = 0;
                 welfareMoney = AllParameter.basicconsumption;
@@ -72,6 +69,7 @@ namespace meisai.persons.money
                if (product_money < AllParameter.minimumwage)
                 {
                     //失业了
+                    state.isjobless = true;
                     product_money = 0;
                     welfareMoney = AllParameter.basicconsumption;
                 }

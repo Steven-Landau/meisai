@@ -23,6 +23,10 @@ namespace meisai.persons.state
         public Race race = Race.Lazy;
         //年龄，新建的人年龄是0
         public int Age = 0;
+        //是否失业
+        public bool isjobless = false;
+        //是否退休
+        public bool isretiring = false;
         //死亡率及状态（是否将要死亡）
         public double Deathrate(int Age, PersonMoney pm) {
             if(Age <= 1)
@@ -72,7 +76,12 @@ namespace meisai.persons.state
         public void deltaTAfter(int day = 365)
         {
             Age++;
-            //年龄增加
+            //如果达到年龄，强制毕业并要求工作
+            if (Age > AllParameter.graduateage)
+                this.education.studying = false;
+            if (Age > AllParameter.retireage)
+                this.isretiring = true;
+                
         }
 
     }
@@ -88,8 +97,7 @@ namespace meisai.persons.state
         public void getstudydeltaT(int day)
         {
             if (studying) EduLevel++;
-        }
-       
+        }      
         public void offStudy() => studying = false;
     }
 

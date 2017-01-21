@@ -117,7 +117,7 @@ namespace meisai.government
                 state.allConsumption += person.money.consumption(person.state);
                 state.allProduct += person.money.product(person.state);
                 
-                if (person.money.product(person.state) == 0) state.jobless++;
+                if (person.state.isjobless) state.jobless++;
             }
         }
         private void getAgeAttribution()
@@ -232,7 +232,7 @@ namespace meisai.government
                     femaleM.state.education.EduLevel;
                 //产假
                 maleM.state.maternalLeave = 1;
-                femaleM.state.maternalLeave = 2;
+                femaleM.state.maternalLeave = 1;
                 //添加三个人之间的关系
                 child.relationShip.relations.Add(new SingleRelation(
                     PersonRelationType.Father, maleM));
