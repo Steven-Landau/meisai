@@ -88,12 +88,20 @@ namespace meisai.Tools
         #region 税率
         public enum TaxMode { Low};
         public static TaxMode taxMode;
-        public static double taxRate()
+       public static double taxRate(TaxMode taxMode)
         {
             switch (taxMode)
             {
+                case TaxMode.Zero:
+                    return 0;
                 case TaxMode.Low:
-                    return 0.1;
+                    return 0.05;
+                case TaxMode.Medium:
+                    return  0.15;
+                case TaxMode.High:
+                    return 0.3;
+                case TaxMode.Extreme:
+                    return 0.5;
             }
             return 0;
         }
