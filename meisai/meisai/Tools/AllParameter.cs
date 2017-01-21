@@ -60,10 +60,10 @@ namespace meisai.Tools
             switch (race)
             {
                 case Race.Lazy:
-                    t1 = 1;
+                    t1 = 0.8*(RandomGen.getDouble()/2 + 0.5);
                     break;
                 case Race.Creative:
-                    t1 = 0.9;
+                    t1 = 0.7*(RandomGen.getDouble()/3 + 0.67);
                     break;
                 default:
                     t1 = 1;
