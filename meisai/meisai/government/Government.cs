@@ -1,5 +1,6 @@
 ﻿using meisai.government.state;
 using meisai.persons;
+using meisai.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +25,22 @@ namespace meisai.government
         public void deltaTAfter(int day = 365)
         {
             //先进行政策范围内的事情：
-            //1,开展教育
+            //1,开展全民教育
+            
+            foreach (Person person in personList)
+            {
+           
+                if (person.state.Age < 18)
+                  
+               
+                state.govMoney -= (int)(AllParameter.bassic_edu_fee *
+                        AllParameter.gov_edu_rate *
+                        Math.Sqrt(person.state.education.EduLevel));
+
+            }
 
             //再遍历每个人实现个人的改变，包括赚钱等等
-           //每个人挣钱
+            //每个人挣钱
             foreach (Person person in personList)
             {
                 person.deltaTAfter(day);
@@ -68,6 +81,7 @@ namespace meisai.government
                 state.allMoney += person.getMyMoney();
                 state.allConsumption += person.money.consumption(person.state);
                 state.allProduct += person.money.product(person.state);
+                
                 if (person.money.product(person.state) == 0) state.jobless++;
             }
         }

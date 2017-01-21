@@ -60,7 +60,7 @@ namespace meisai.persons.money
                     welfareMoney = AllParameter.basicconsumtion;
                 }
             }
-            tax = (int)(product_money * AllParameter.taxRate());
+           
            // Console.WriteLine(product_money);
             return product_money;
         }
@@ -81,9 +81,11 @@ namespace meisai.persons.money
                 taxmode = AllParameter.TaxMode.High;
             else    
                 taxmode = AllParameter.TaxMode.Extreme;
+            //这里的税是生产税不是消费税！
+            tax = (int)(productMoney * AllParameter.taxRate(taxmode));
 
             // I am a pig I only write if else.....
-            
+
             if (state.Age < AllParameter.graduateage || state.Age > AllParameter.retireage)
             {
                 consumption_ = AllParameter.basicconsumtion;

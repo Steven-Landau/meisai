@@ -82,10 +82,8 @@ namespace meisai.persons.state
 
         public void getstudydeltaT(int day)
         {
-            // isworking = false;//学习期间不能工作
+            
             EduLevel++;
-            //  money -= fee;//交学费
-
         }
     }
 

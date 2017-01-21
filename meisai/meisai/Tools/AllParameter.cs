@@ -51,6 +51,7 @@ namespace meisai.Tools
         {
             return -(Age - 35) * (Age - 35) + 289;
         }
+       
         #endregion
         #region 消费倾向
         public static double consumetendency(Race race, Gender gender)
@@ -86,7 +87,7 @@ namespace meisai.Tools
         }
         #endregion
         #region 税率
-        public enum TaxMode { Low};
+        public enum TaxMode { Zero,Low, Medium, High, Extreme };
         public static TaxMode taxMode;
        public static double taxRate(TaxMode taxMode)
         {
@@ -107,5 +108,12 @@ namespace meisai.Tools
         }
         #endregion
         #endregion
+        #region education
+        //基础学费
+        public static int bassic_edu_fee = 1000;
+        //政府承担学费比例
+        public static int gov_edu_rate = 1;
+        #endregion
+
     }
 }

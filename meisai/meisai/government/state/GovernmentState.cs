@@ -12,13 +12,16 @@ namespace meisai.government.state
         public long allMoney = 0;
         //政府所拥有的资产
         public long govMoney = 0;
-        public int GDP;
+        public Int64 allProduct = 0;
         public double GDPvarience;//国内生产总值和方差
         public int GDH;
         public double GDHvarience;//国内幸福总值和方差
-        public Int64 allProduct=0;
+        public long gov_edu_expen;//教育总支出
+        public long gov_wel_expen;//福利总支出
         public Int64 allConsumption =0;
+        //失业者
         public int jobless = 0;
+
 
 
 
