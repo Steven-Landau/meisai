@@ -14,7 +14,7 @@ namespace meisai.government.state
         public long govMoney = 0;
         public Int64 allProduct = 0;
         public double GDPvarience;//国内生产总值和方差
-        public int GDH;
+      //  public int GDH;
         public double GDHvarience;//国内幸福总值和方差
         public long gov_edu_expen=0;//教育总支出
         public long gov_wel_expen=0;//福利总支出

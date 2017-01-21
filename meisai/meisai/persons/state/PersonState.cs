@@ -23,7 +23,7 @@ namespace meisai.persons.state
         //年龄
         public int Age = 5;
         //死亡率及状态（是否将要死亡）
-        public double Deathrate(PersonMoney personmoney ,int Age) {
+        public double Deathrate(int Age) {
             if(Age <= 1)
                 return 0.008;
             else if(Age <= 4)
