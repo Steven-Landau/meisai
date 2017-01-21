@@ -29,8 +29,7 @@ namespace meisai.windowset.basis
         public double Ymax = 1;
         //个人位置
         public Point[] positions = new Point[1] { new Point(0.5, 0.5)};
-        public List<KeyValuePair<int, SingleRelation>> relationship = 
-            new List<KeyValuePair<int, SingleRelation>>();
+        public List<IntPair> relationship = new List<IntPair>();
 
         public DotMap()
         {
@@ -50,7 +49,7 @@ namespace meisai.windowset.basis
             //先画位置
             double Xratio = canvas.ActualHeight / (Xmax - Xmin);
             double Yratio = canvas.ActualWidth / (Ymax - Ymin);
-            for (int i=0; i<positions.Length; i++)
+            for (int i = 0; i < positions.Length; i++)
             {
                 Ellipse dot = new Ellipse();
                 dot.Width = 3;
@@ -61,11 +60,16 @@ namespace meisai.windowset.basis
                 Canvas.SetBottom(dot, Xratio * (positions[i].X - Xmin));
                 Canvas.SetLeft(dot, Yratio * (positions[i].Y - Ymin));
             }
-            foreach (KeyValuePair<int, SingleRelation> x in relationship)
+            foreach (IntPair intPair in relationship)
             {
                 Line line = new Line();
                 line.StrokeThickness = 1;
                 line.Stroke = Brushes.Black;
+                line.X1 = Xratio * (positions[intPair.start].X - Xmin);
+                line.Y1 = Yratio * (positions[intPair.start].Y - Ymin);
+                line.X2 = Xratio * (positions[intPair.end].X - Xmin);
+                line.Y2 = Yratio * (positions[intPair.end].Y - Ymin);
+                canvas.Children.Add(line);
             }
         }
     }

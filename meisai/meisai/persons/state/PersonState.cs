@@ -1,4 +1,5 @@
 ﻿using meisai.persons.money;
+using meisai.persons.relation;
 using meisai.Tools;
 using System;
 using System.Collections.Generic;
@@ -20,8 +21,8 @@ namespace meisai.persons.state
         public Gender gender = Gender.Male;
         //种族
         public Race race = Race.Lazy;
-        //年龄
-        public int Age = 25;
+        //年龄，新建的人年龄是0
+        public int Age = 0;
         //死亡率及状态（是否将要死亡）
         public double Deathrate(int Age, PersonMoney pm) {
             if(Age <= 1)
@@ -58,9 +59,7 @@ namespace meisai.persons.state
         public void Die()
         {
             IfWillDie = true;
-            //人的财产交给政府
-            //孩子变成孤儿
-            //这个人消失
+
         }
         public void Death(double Deathrate_)
         {

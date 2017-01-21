@@ -31,8 +31,7 @@ namespace meisai.windowset
         public void Refresh()
         {
             dotMap.positions = goverment.positions;
-            dotMap.relationship = 
-                new List<KeyValuePair<int, persons.relation.SingleRelation>>();
+            dotMap.relationship = goverment.relationship;
             dotMap.Refresh();
         }
 

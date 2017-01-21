@@ -12,7 +12,9 @@ namespace meisai.Tools
     {
         
         //基础消费
-        public static int basicconsumtion = 5000;
+        public static int basicconsumption = 5000;
+        //孩子的单方基本消费
+        public static int childbasicconsumption = 2500;
         //退休年龄
         public static int retireage = 52;
         public static int graduateage = 18;
@@ -123,6 +125,17 @@ namespace meisai.Tools
         #endregion
         #region 年龄显示配置
         public static int MaxAge = 200;
+        #endregion
+        #region 婚姻生子
+        public static double marriageRate = 0.001;
+        public static int minMarriageAge = 18;
+        public static int maxMarriageAge = 40;
+        public static bool ifWillMarriage(double Lsquare)
+        {
+            //这个数可以改！！越小意味着随距离的关系越明显，但跑得会慢
+            double ratio = 0.0001;
+            return (ratio * RandomGen.getDouble()) / Lsquare > 1;
+        }
         #endregion
     }
 }

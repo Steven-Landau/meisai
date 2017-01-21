@@ -40,7 +40,7 @@ namespace meisai.persons.money
                 state.Age > AllParameter.retireage)
             {
                 product_money = 0;
-                welfareMoney = AllParameter.basicconsumtion;
+                welfareMoney = AllParameter.basicconsumption;
             }
             else
             {
@@ -58,7 +58,7 @@ namespace meisai.persons.money
                 {
                     //失业了
                     product_money = 0;
-                    welfareMoney = AllParameter.basicconsumtion;
+                    welfareMoney = AllParameter.basicconsumption;
                 }
             }
            
@@ -71,17 +71,17 @@ namespace meisai.persons.money
             int consumption_;
             if (state.Age < AllParameter.graduateage || state.Age > AllParameter.retireage)
             {
-                consumption_ = AllParameter.basicconsumtion;
+                consumption_ = AllParameter.basicconsumption;
             }
             else if (productMoney == 0)
             {
-                consumption_ = AllParameter.basicconsumtion;
+                consumption_ = AllParameter.basicconsumption;
             }
             else
             {
-                consumption_ = (int)(AllParameter.basicconsumtion +
+                consumption_ = (int)(AllParameter.basicconsumption +
                     AllParameter.consumetendency(state.race, state.gender) *
-                    (productMoney - AllParameter.basicconsumtion) );
+                    (productMoney - AllParameter.basicconsumption) );
             }
            // Console.WriteLine(consumption_);
             return consumption_;

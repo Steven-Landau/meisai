@@ -10,5 +10,10 @@ namespace meisai.Tools
     {
         public int start;
         public int end;
+        public IntPair(int start_, int end_)
+        {
+            start = start_;
+            end = end_;
+        }
     }
 }
