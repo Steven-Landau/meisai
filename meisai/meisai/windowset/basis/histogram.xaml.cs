@@ -20,6 +20,7 @@ namespace meisai.windowset.basis
     /// </summary>
     public partial class Histogram : UserControl
     {
+        public int linesCount = 5; //显示几条基准线
         public double[] data = new double[1] { 1 };
         private Brush[] brush = new Brush[10] { Brushes.Brown, Brushes.Red,
             Brushes.Orange, Brushes.Yellow, Brushes.Green, Brushes.Blue,
@@ -66,6 +67,16 @@ namespace meisai.windowset.basis
                 Canvas.SetBottom(rect1, 0);
                 Canvas.SetLeft(rect, width * i);
                 Canvas.SetLeft(rect1, width * i);
+            }
+            double lineHeight = height / linesCount;
+            for (int i=0; i <= linesCount; i++)
+            {
+                Line line = new Line();
+                line.X1 = 0;
+                line.X2 = allWidth;
+                line.Y1 = line.Y2 = lineHeight * i;
+                line.Stroke = brush[i % 10];
+                canvas.Children.Add(line);
             }
         }
     }
