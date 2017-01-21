@@ -1,5 +1,4 @@
 ﻿using meisai.government;
-using meisai.windowset.basis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,24 +16,23 @@ using System.Windows.Shapes;
 namespace meisai.windowset
 {
     /// <summary>
-    /// Interaction logic for AgeDistribution.xaml
+    /// Interaction logic for LocationDistribution.xaml
     /// </summary>
-    public partial class AgeDistribution : Window
+    public partial class LocationDistribution : Window
     {
         Government goverment;
 
-        public AgeDistribution(Government goverment_)
+        public LocationDistribution(Government goverment_)
         {
             goverment = goverment_;
             InitializeComponent();
-            //this.AddChild(histogram);
         }
+
         public void Refresh()
         {
-            histogram.maxData = 1;
-            histogram.data = goverment.ageDistrib;
-
-            histogram.Refresh();
+            dotMap.positions = goverment.positions;
+            dotMap.relationship = goverment.relationship;
+            dotMap.Refresh();
         }
 
         public bool CanBeClose = false;

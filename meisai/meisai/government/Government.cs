@@ -1,5 +1,6 @@
 ﻿using meisai.government.state;
 using meisai.persons;
+using meisai.persons.relation;
 using meisai.persons.state;
 using meisai.Tools;
 using System;
@@ -16,7 +17,9 @@ namespace meisai.government
         static List<Person> personList = new List<Person>();
         GovernmentState state = new GovernmentState();
         //年龄分布，从0岁到99岁
-        public double[] ageDistrib = new double[100];
+        public double[] ageDistrib = new double[AllParameter.MaxAge];
+        public Point[] positions;
+        public List<IntPair> relationship;
 
         public Government()
         {//初态
@@ -63,7 +66,6 @@ namespace meisai.government
             {
                 state.gov_tax += person.money.taxMoney;
                 state.gov_wel_expen += person.money.welfareMoney;
-
             }
             state.govMoney += state.gov_tax;
             state.govMoney -= state.gov_wel_expen;
@@ -80,10 +82,16 @@ namespace meisai.government
                     continue;
                 }
             }
-            
+            updatepositions();
+            //婚恋生子
+            marriage();
+
             //统计新的状态
             sumUpStates();
             getAgeAttribution();
+            updatepositions();
+            updateID();
+            updateRelationship();
         }
         private void sumUpStates()
         {
@@ -107,7 +115,7 @@ namespace meisai.government
             int yichu = 0;
             foreach (Person person in personList)
             {
-                if (person.state.Age < ageDistrib.Length && person.state.Age > 0)
+                if (person.state.Age < ageDistrib.Length && person.state.Age >= 0)
                 {
                     ageDistrib[person.state.Age] ++;
                 }
@@ -122,6 +130,103 @@ namespace meisai.government
             {
                 MessageBox.Show("由于有" + yichu + "人年龄不小于" + ageDistrib.Length + 
                     "岁，导致年龄分布没有显示它们");
+            }
+        }
+        private void updatepositions()
+        {
+            positions = new Point[personList.Count];
+            for (int i=0; i< personList.Count; i++)
+            {
+                positions[i] = personList[i].state.position;
+            }
+        }
+        private void updateID()
+        {
+            for (int i=0; i<personList.Count; i++)
+            {
+                personList[i].nowID = i;
+            }
+        }
+        private void updateRelationship()
+        {
+            relationship = new List<IntPair>();
+            for (int i = 0; i < personList.Count; i++)
+            {
+                foreach (SingleRelation x in personList[i].relationShip.relations)
+                {
+                    relationship.Add(new IntPair(i, x.targetPerson.nowID));
+                }
+            }
+        }
+        private void marriage()
+        {
+            //先找到所有的可婚的人
+            List<Person> maleList = new List<Person>();
+            List<Person> femaleList = new List<Person>();
+            foreach (Person person in personList)
+            {
+                //每个孩子都消费2倍的basicconsumption
+                if (person.money.money > AllParameter.childbasicconsumption && 
+                    person.state.Age > AllParameter.minMarriageAge && 
+                    person.state.Age < AllParameter.maxMarriageAge)
+                {
+                    //可以付钱供养孩子
+                    switch (person.state.gender)
+                    {
+                        case Gender.Male:
+                            maleList.Add(person);
+                            break;
+                        case Gender.Female:
+                            femaleList.Add(person);
+                            break;
+                    }
+                }
+            }
+            //已经找到了所有的可以生孩子的人的列表
+            int maxMarry = (int)(personList.Count * AllParameter.marriageRate);
+            int count = 0;
+            while (count < maxMarry && maleList.Count != 0 && femaleList.Count != 0)
+            {
+                //先随机找一个男的，男的找女的
+                int maleIndex = (int)(RandomGen.getDouble() * maleList.Count);
+                Person maleM = maleList[maleIndex % maleList.Count];
+                maleList.Remove(maleM); //删除掉这个男性
+                Person femaleM;
+                do
+                {
+                    femaleM = femaleList[((int)(RandomGen.getDouble()
+                        * femaleList.Count)) % femaleList.Count];
+                } while (AllParameter.ifWillMarriage(femaleM.state.position.X *
+                    femaleM.state.position.X + femaleM.state.position.Y *
+                    femaleM.state.position.Y));
+                //找到了一个合适的女人
+                femaleList.Remove(femaleM); //删除掉这个女性
+                //第一年就花费
+                maleM.money.money -= AllParameter.childbasicconsumption;
+                femaleM.money.money -= AllParameter.childbasicconsumption;
+                //新建小孩儿，并添加到列表中
+                Person child = new Person();
+                personList.Add(child);
+                //设置孩子的位置
+                child.state.position.X = (maleM.state.position.X + 
+                    femaleM.state.position.X) / 2;
+                child.state.position.Y = (maleM.state.position.Y +
+                    femaleM.state.position.Y) / 2;
+                //添加三个人之间的关系
+                child.relationShip.relations.Add(new SingleRelation(
+                    PersonRelationType.Father, maleM));
+                child.relationShip.relations.Add(new SingleRelation(
+                    PersonRelationType.Mother, femaleM));
+                maleM.relationShip.relations.Add(new SingleRelation(
+                    PersonRelationType.Child, child));
+                maleM.relationShip.relations.Add(new SingleRelation(
+                    PersonRelationType.Wife, femaleM));
+                femaleM.relationShip.relations.Add(new SingleRelation(
+                    PersonRelationType.Child, child));
+                femaleM.relationShip.relations.Add(new SingleRelation(
+                    PersonRelationType.Husband, maleM));
+                //生了一个孩子，+1
+                count++;
             }
         }
         public long GetGovMoney() => state.govMoney;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using meisai.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,9 +23,6 @@ namespace meisai.windowset.basis
     {
         public int linesCount = 5; //显示几条基准线
         public double[] data = new double[1] { 1 };
-        private Brush[] brush = new Brush[10] { Brushes.Brown, Brushes.Red,
-            Brushes.Orange, Brushes.Yellow, Brushes.Green, Brushes.Blue,
-            Brushes.Purple, Brushes.Gray, Brushes.White, Brushes.Black};
         public double maxData = 1;
 
         public Histogram()
@@ -56,8 +54,8 @@ namespace meisai.windowset.basis
                 rect1.Height = 20;
                 rect.Width = width;
                 rect1.Width = width;
-                rect.Fill = brush[i % 10];
-                rect1.Fill = brush[i % 10];
+                rect.Fill = AllParameter.colorBrush[i % 10];
+                rect1.Fill = AllParameter.colorBrush[i % 10];
                 rect.StrokeThickness = 1;
                 rect1.StrokeThickness = 0;
                 rect.Stroke = Brushes.Black;
@@ -75,7 +73,7 @@ namespace meisai.windowset.basis
                 line.X1 = 0;
                 line.X2 = allWidth;
                 line.Y1 = line.Y2 = lineHeight * i;
-                line.Stroke = brush[i % 10];
+                line.Stroke = AllParameter.colorBrush[i % 10];
                 canvas.Children.Add(line);
             }
         }

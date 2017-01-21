@@ -9,7 +9,7 @@ namespace meisai.persons.career
     /*
      * 与事业相关的事情
      */
-    class PersonCareer
+    public class PersonCareer
     {
 
     }

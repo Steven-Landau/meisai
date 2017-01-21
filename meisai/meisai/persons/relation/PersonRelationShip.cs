@@ -11,13 +11,29 @@ namespace meisai.persons.relation
      */
     public class PersonRelationShip
     {
-        List<SingleRelation> relations = new List<SingleRelation>();
+        public List<SingleRelation> relations = new List<SingleRelation>();
+        public void deleteRelationWith(Person person)
+        {
+            for (int i=0; i<relations.Count; i++)
+            {
+                if (relations[i].targetPerson == person)
+                {
+                    relations.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
     }
-    public enum PersonRelationType { NULL, Friend, Couple };
+    public enum PersonRelationType { NULL, Father, Mother, Child, Wife, Husband};
     public class SingleRelation
     {
-        PersonRelationType type = PersonRelationType.NULL;
+        public PersonRelationType type = PersonRelationType.NULL;
         //关系对象s
-        Person targetPerson = null;
+        public Person targetPerson = null;
+        public SingleRelation(PersonRelationType type_, Person targetPerson_)
+        {
+            type = type_;
+            targetPerson = targetPerson_;
+        }
     }
 }

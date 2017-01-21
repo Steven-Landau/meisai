@@ -13,8 +13,9 @@ namespace meisai.persons
     /*
      * 这个类是个人，包括几个类：状态、金钱、事业、关系
      */
-    class Person
+    public class Person
     {
+        public int nowID = 0; //这个是当前状态下的个人编号，在government的personlist里
         public PersonState state = new PersonState();
         public PersonMoney money = new PersonMoney();
         public PersonCareer career = new PersonCareer();
@@ -26,7 +27,31 @@ namespace meisai.persons
             state.deltaTAfter(day);
             money.deltaTAfter(state, day);
             state.Death(state.Deathrate(state.Age,money));
-
+            if (state.IfWillDie)
+            {
+                //孩子变成孤儿，配偶变成单身狗
+                foreach (SingleRelation sr in relationShip.relations)
+                {
+                    switch (sr.type)
+                    {
+                        case PersonRelationType.Child:
+                            sr.targetPerson.relationShip.deleteRelationWith(this);
+                            break;
+                        case PersonRelationType.Father:
+                            sr.targetPerson.relationShip.deleteRelationWith(this);
+                            break;
+                        case PersonRelationType.Husband:
+                            sr.targetPerson.relationShip.deleteRelationWith(this);
+                            break;
+                        case PersonRelationType.Mother:
+                            sr.targetPerson.relationShip.deleteRelationWith(this);
+                            break;
+                        case PersonRelationType.Wife:
+                            sr.targetPerson.relationShip.deleteRelationWith(this);
+                            break;
+                    }
+                }
+            }
         }
         public int getMyMoney() => money.money;
 
