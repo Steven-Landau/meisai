@@ -110,7 +110,7 @@ namespace meisai.windowset
             public override String setValue(double ratio)
             {
                 AllParameter.retireage = (int)(ratio * Max);
-                return "" + AllParameter.retireage;
+                return "" + AllParameter.graduateage;
             }
         }
     }
