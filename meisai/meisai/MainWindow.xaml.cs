@@ -34,7 +34,7 @@ namespace meisai
         AgeDistribution ageDistribution = null;
         LocationDistribution locationDistribution = null;
         GovernmentControl governmentControl;
-        int nowDay = 0;
+        public static int nowDay = 0;
 
         public MainWindow() 
         {
@@ -48,11 +48,26 @@ namespace meisai
             Refresh();
             buttonstartayear.Click += Buttonstartayear_Click;
             buttonend.Click += Buttonend_Click;
+            buttonrestartsave.Click += Buttonrestartsave_Click;
+            buttonsaveout.Click += Buttonsaveout_Click;
             //MathematicaOut.Out("test", "A", new String[] { "a", "b" });
+        }
+
+        private void Buttonsaveout_Click(object sender, RoutedEventArgs e)
+        {
+            MathematicaOut.OutputYearData("yearData", "yearData", 
+                Government.savedName);
+        }
+
+        private void Buttonrestartsave_Click(object sender, RoutedEventArgs e)
+        {
+            MathematicaOut.yearData.Clear();
         }
 
         private void Buttonend_Click(object sender, RoutedEventArgs e)
         {
+            Buttonsaveout_Click(null, null);
+            Buttonrestartsave_Click(null, null);
             nowDay = 0;
             CloseWindowSet();
             InitWindowSet();
@@ -64,6 +79,8 @@ namespace meisai
         {
             textBlockday.Text = "" + nowDay;
             textBlockyear.Text = "" + (nowDay / 365);
+            government.SaveOnYear();
+            textBlockcountsave.Text = "" + MathematicaOut.yearData.Count;
 
             if (winGovernmentOnOff) winGovernment.Refresh();
             if (ageDistributionOnOff) ageDistribution.Refresh();

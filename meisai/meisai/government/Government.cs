@@ -269,5 +269,30 @@ namespace meisai.government
         public long Getedu() => state.gov_edu_expen;
         public long Getwel() => state.gov_wel_expen;
         public long GetwelMaternal() => state.gov_wel_maternal_expen;
+
+        public void SaveOnYear()
+        {
+            MathematicaOut.AppendYearData(MathematicaOut.WriteToList(new String[] {
+                t(MainWindow.nowDay/365), t(state.allMoney), t(state.govMoney),
+                t(state.allProduct), t(state.GDPvarience), t(state.GDHvarience),
+                t(state.gov_edu_expen), t(state.gov_wel_expen),
+                t(state.gov_wel_maternal_expen), t(state.gov_tax),
+                t(state.allConsumption), t(state.jobless), t(state.govChildrenFee),
+                MathematicaOut.WriteToList(tt(ageDistrib))}));
+        }
+        public String t<T>(T x) => x.ToString();
+        public String[] tt(double[] a)
+        {
+            String[] s = new String[a.Length];
+            for (int i = 0; i < s.Length; i++) s[i] = a[i].ToString();
+            return s;
+        }
+        //这里是所有输出的名字列表，可以在mathematica里通过key_<名字>来代表下标
+        //比如数组是A，则调用年份用A[key_year]来调用
+        public static String[] savedName = new String[] {
+            "year", "allMoney", "govMoney", "allProduct", "GDPvarience",
+            "GDHvarience", "goveduexpen", "govwelexpen", "govwelmaternalexpen",
+            "govtax", "allConsumption", "jobless", "govChildrenFee",
+            "ageDistrib"};
     }
 }

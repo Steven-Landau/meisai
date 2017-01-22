@@ -1,4 +1,5 @@
-﻿using System;
+﻿using meisai.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,8 +26,6 @@ namespace meisai.government.state
         public int jobless = 0;
         //这一年发的给孩子的基础救助
         public int govChildrenFee = 0;
-
-
 
     }
 }
