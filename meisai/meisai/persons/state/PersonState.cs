@@ -84,7 +84,6 @@ namespace meisai.persons.state
                 isretiring = true;
             if (Age > AllParameter.graduateage)
                 this.education.studying = false;
-
         }
 
     }

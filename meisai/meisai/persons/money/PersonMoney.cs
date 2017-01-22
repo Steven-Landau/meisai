@@ -90,7 +90,7 @@ namespace meisai.persons.money
         public int consumption(PersonState state)
         {
             int consumption_;
-            if (state.education.studying || state.Age > AllParameter.retireage)
+            if (state.education.studying ||state.isretiring)
             {
                 consumption_ = AllParameter.basicconsumption;
             }

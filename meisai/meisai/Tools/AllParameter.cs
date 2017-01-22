@@ -37,7 +37,7 @@ namespace meisai.Tools
         public static double tech_impro_rate = 0.2;
         #region 挣钱
         //失业最低工资
-        public static int minimumwage = 10000;
+        public static int minimumwage = 5000;
         
         //工资——智商系数
         public static double IQproductparameter = 0.4;

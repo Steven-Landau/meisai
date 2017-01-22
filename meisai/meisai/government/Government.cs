@@ -240,8 +240,8 @@ namespace meisai.government
                 child.state.education.EduLevel = maleM.state.education.EduLevel +
                     femaleM.state.education.EduLevel;
                 //产假
-                maleM.state.maternalLeave = 1;
-                femaleM.state.maternalLeave = 1;
+                maleM.state.maternalLeave = 0;
+                femaleM.state.maternalLeave = 0;
                 //添加三个人之间的关系
                 child.relationShip.relations.Add(new SingleRelation(
                     PersonRelationType.Father, maleM));
@@ -269,6 +269,7 @@ namespace meisai.government
         public long Getedu() => state.gov_edu_expen;
         public long Getwel() => state.gov_wel_expen;
         public long GetwelMaternal() => state.gov_wel_maternal_expen;
+        public double Getgov_happiness() => state.gov_happiness;
 
         public void SaveOnYear()
         {
