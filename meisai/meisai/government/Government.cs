@@ -36,8 +36,9 @@ namespace meisai.government
             {
                 personList[i].state.gender = (Gender)(i / 5000);
                 personList[i].state.race = (Race)(i /5000);
-               // personList[i].state.race = i < 3333 ? Race.Lazy : Race.Creative;
+                //personList[i].state.race = i < 3333 ? Race.Lazy : Race.Creative;
                 // personList[i].state.Age = 25;
+               // personList[i].state.Age = (int)(RandomGen.getDouble() * 50+0.5);
                 personList[i].state.Age = AllParameter.GetAge();
             }
             refreshStates();
@@ -252,7 +253,7 @@ namespace meisai.government
                     femaleM.state.education.EduLevel)/2;
                 //产假
                 maleM.state.maternalLeave = 0;
-                femaleM.state.maternalLeave = 0;
+                femaleM.state.maternalLeave = 2;
                 //添加三个人之间的关系
                 child.relationShip.relations.Add(new SingleRelation(
                     PersonRelationType.Father, maleM));
@@ -290,7 +291,7 @@ namespace meisai.government
                 t(state.gov_edu_expen), t(state.gov_wel_expen),
                 t(state.gov_wel_maternal_expen), t(state.gov_tax),
                 t(state.allConsumption), t(state.jobless), t(state.govChildrenFee),
-                MathematicaOut.WriteToList(tt(ageDistrib))}));
+               /* MathematicaOut.WriteToList(tt(ageDistrib))*/}));
         }
         public String t<T>(T x) => x.ToString();
         public String[] tt(double[] a)
@@ -305,6 +306,6 @@ namespace meisai.government
             "year", "population","allMoney", "govMoney", "allProduct", "govhappiness",
             "goveduexpen", "govwelexpen", "govwelmaternalexpen",
             "govtax", "allConsumption", "jobless", "govChildrenFee",
-            "ageDistrib"};
+            /*"ageDistrib"*/};
     }
 }

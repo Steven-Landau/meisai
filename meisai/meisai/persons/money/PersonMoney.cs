@@ -41,11 +41,32 @@ namespace meisai.persons.money
                 state.maternalLeave--;
             }
             //幸福
+            //单一幸福函数
             state.happiness = Math.Log(consumeMoney)+
                Math.Log(money) -
                 (1 - Convert.ToInt16(state.isjobless)) *
                 AllParameter.happiness_index *
                 AllParameter.producttendency(state.race);
+            //差异幸福函数
+            /*if (state.race == Race.Creative)
+            {
+                state.happiness = Math.Log(consumeMoney) +
+             Math.Log(money) -
+              (1 - Convert.ToInt16(state.isjobless)) *
+              AllParameter.happiness_index *
+              AllParameter.producttendency(state.race)
+              +0.5*Math.Log(state.education.EduLevel);
+            }
+            else
+            {
+                state.happiness = Math.Log(consumeMoney) +
+             Math.Log(money) -
+              (1 - Convert.ToInt16(state.isjobless)) *
+              AllParameter.happiness_index *
+              AllParameter.producttendency(state.race)+
+              0.5 * Math.Log(state.education.EduLevel);
+            }*/
+          
         }
         //生产
         public int product(PersonState state, int day = 365)
