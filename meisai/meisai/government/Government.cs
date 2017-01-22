@@ -14,15 +14,18 @@ namespace meisai.government
 {
     public class Government
     {
-        static List<Person> personList = new List<Person>();
-        GovernmentState state = new GovernmentState();
+        static List<Person> personList;
+        GovernmentState state;
         //年龄分布，从0岁到99岁
-        public double[] ageDistrib = new double[AllParameter.MaxAge];
+        public double[] ageDistrib;
         public Point[] positions;
         public List<IntPair> relationship;
 
         public Government()
         {//初态
+            personList = new List<Person>();
+            ageDistrib = new double[AllParameter.MaxAge];
+            state = new GovernmentState();
             state.govMoney = 1000*10000;
             for (int i = 0; i < 10000; i++)
             {
@@ -36,6 +39,7 @@ namespace meisai.government
                 //personList[i].state.Age = 18 + (36 * (i-5000)) / 10000;
                 personList[i].state.Age = AllParameter.GetAge();
             }
+            refreshStates();
         }
         public void deltaTAfter(int day = 365)
         {
@@ -48,33 +52,14 @@ namespace meisai.government
             
             foreach (Person person in personList)
             {
-
-                //1、承担一部分学费
-                if (person.state.education.studying)        
+           
+                if (person.state.Age < 18)        
                 state.gov_edu_expen+= (int)(AllParameter.bassic_edu_fee *
                         AllParameter.gov_edu_rate *
                         Math.Sqrt(person.state.education.EduLevel));
-               
-                
-           }
-            state.govMoney -= state.gov_edu_expen;
-
-            //2、公共教育->技术进步
-
-            if (state.govMoney>0)
-            {
-                
-                foreach (Person person in personList)
-                {
-                    person.state.education.EduLevel += AllParameter.tech_impro_rate;
-
-                }
-                
+              
             }
-            state.gov_tech_expen = (int)(state.govMoney * AllParameter.tech_impro_rate);
-            state.govMoney -= state.gov_tech_expen;
-
-
+            state.govMoney -= state.gov_edu_expen;
             //再遍历每个人实现个人的改变，包括赚钱等等
             //每个人挣钱
             foreach (Person person in personList)
@@ -115,24 +100,18 @@ namespace meisai.government
             updatepositions();
             //婚恋生子
             marriage();
-            //计算幸福
-            // public double[] ageDistrib = new double[AllParameter.MaxAge];
-            double[] happy=new double[personList.Count];
-            for(int i=0;i<personList.Count;i++)
-            {            
-                happy[i] = personList[i].state.happiness;              
-            }
-            state.gov_happiness = AllParameter.sum(happy) / personList.Count -
-                AllParameter.standard_deviation(happy) * AllParameter.gov_happy_index;
 
-            
+            //统计新的状态
+            refreshStates();
+        }
+        private void refreshStates()
+        {
             //统计新的状态
             sumUpStates();
             getAgeAttribution();
             updatepositions();
             updateID();
             updateRelationship();
-            
         }
         private void sumUpStates()
         {
@@ -261,8 +240,8 @@ namespace meisai.government
                 child.state.education.EduLevel = maleM.state.education.EduLevel +
                     femaleM.state.education.EduLevel;
                 //产假
-                maleM.state.maternalLeave = 0;
-                femaleM.state.maternalLeave = 0;
+                maleM.state.maternalLeave = 1;
+                femaleM.state.maternalLeave = 1;
                 //添加三个人之间的关系
                 child.relationShip.relations.Add(new SingleRelation(
                     PersonRelationType.Father, maleM));
@@ -280,8 +259,6 @@ namespace meisai.government
                 count++;
             }
         }
-       
-
         public long GetGovMoney() => state.govMoney;
         public long GetAllMoney() => state.allMoney;
         public long GetAllConsumption() => state.allConsumption;
@@ -292,6 +269,30 @@ namespace meisai.government
         public long Getedu() => state.gov_edu_expen;
         public long Getwel() => state.gov_wel_expen;
         public long GetwelMaternal() => state.gov_wel_maternal_expen;
-        public double Getgov_happiness() => state.gov_happiness;
+
+        public void SaveOnYear()
+        {
+            MathematicaOut.AppendYearData(MathematicaOut.WriteToList(new String[] {
+                t(MainWindow.nowDay/365), t(state.allMoney), t(state.govMoney),
+                t(state.allProduct), t(state.GDPvarience), t(state.GDHvarience),
+                t(state.gov_edu_expen), t(state.gov_wel_expen),
+                t(state.gov_wel_maternal_expen), t(state.gov_tax),
+                t(state.allConsumption), t(state.jobless), t(state.govChildrenFee),
+                MathematicaOut.WriteToList(tt(ageDistrib))}));
+        }
+        public String t<T>(T x) => x.ToString();
+        public String[] tt(double[] a)
+        {
+            String[] s = new String[a.Length];
+            for (int i = 0; i < s.Length; i++) s[i] = a[i].ToString();
+            return s;
+        }
+        //这里是所有输出的名字列表，可以在mathematica里通过key_<名字>来代表下标
+        //比如数组是A，则调用年份用A[key_year]来调用
+        public static String[] savedName = new String[] {
+            "year", "allMoney", "govMoney", "allProduct", "GDPvarience",
+            "GDHvarience", "goveduexpen", "govwelexpen", "govwelmaternalexpen",
+            "govtax", "allConsumption", "jobless", "govChildrenFee",
+            "ageDistrib"};
     }
 }
