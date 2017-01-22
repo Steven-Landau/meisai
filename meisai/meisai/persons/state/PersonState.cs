@@ -60,7 +60,9 @@ namespace meisai.persons.state
             RandomGen.getDouble());
         //剩余的产假年数
         public int maternalLeave = 0;
-
+        //幸福指数
+        public double happiness;
+       
 
         public void Die()
         {
@@ -77,11 +79,12 @@ namespace meisai.persons.state
         {
             Age++;
             //如果达到年龄，强制毕业并要求工作
+            
+            if (Age > AllParameter.retireage)
+                isretiring = true;
             if (Age > AllParameter.graduateage)
                 this.education.studying = false;
-            if (Age > AllParameter.retireage)
-                this.isretiring = true;
-                
+
         }
 
     }
@@ -96,7 +99,8 @@ namespace meisai.persons.state
 
         public void getstudydeltaT(int day)
         {
-            if (studying) EduLevel++;
+            if (studying)
+             EduLevel++;
         }      
         public void offStudy() => studying = false;
     }

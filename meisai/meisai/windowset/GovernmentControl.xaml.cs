@@ -109,8 +109,36 @@ namespace meisai.windowset
             }
             public override String setValue(double ratio)
             {
-                AllParameter.retireage = (int)(ratio * Max);
-                return "" + AllParameter.retireage;
+                AllParameter.graduateage = (int)(ratio * Max);
+                return "" + AllParameter.graduateage;
+            }
+        }
+        class Slider4 : SliderControlData
+        {
+            int Max = 20000;
+            public Slider4()
+            {
+                showName = "最低工资";
+                InitLocation = AllParameter.minimumwage / (double)Max;
+            }
+            public override String setValue(double ratio)
+            {
+                AllParameter.minimumwage = (int)(ratio * Max);
+                return "" + AllParameter.minimumwage;
+            }
+        }
+        class Slider5 : SliderControlData
+        {
+            double Max = 0.1;
+            public Slider5()
+            {
+                showName = "结婚率";
+                InitLocation = AllParameter.marriageRate /Max;
+            }
+            public override String setValue(double ratio)
+            {
+                AllParameter.marriageRate =(ratio * Max);
+                return "" + AllParameter.marriageRate;
             }
         }
     }

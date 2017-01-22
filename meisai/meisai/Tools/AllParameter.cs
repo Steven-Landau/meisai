@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace meisai.Tools
@@ -28,6 +29,8 @@ namespace meisai.Tools
         #region 钱
         //初始的钱
         public static int init_money = 100000;
+
+        public static double tech_impro_rate = 0.2;
         #region 挣钱
         //失业最低工资
         public static int minimumwage = 10000;
@@ -49,10 +52,13 @@ namespace meisai.Tools
             return 0;
         }
         #endregion
+       
         //对年龄的函数，使用在PersonMoney的生产中
         public static int productOfAge(int Age)
         {
-            return -(Age) * (Age - 60) ;
+            double poa;
+            poa = 0.1 * Math.Pow(Age, 3.0) / (Math.Exp(0.0806 * Age) - 1);
+            return (int)poa;          
         }
        
         #endregion
@@ -170,4 +176,5 @@ namespace meisai.Tools
         }
         #endregion
     }
+    
 }

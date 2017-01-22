@@ -38,13 +38,14 @@ namespace meisai.windowset
             textBlockmen.Text = "" + goverment.GetMenCount();
             textBlockavermoney.Text = "" + (goverment.GetAllMoney()/ 
                 (double)goverment.GetMenCount());
-            textBlockaverproduct.Text = "" + goverment.GetAllProduct()/ (double)goverment.GetMenCount();
+            textBlockaverproduct.Text = "" + goverment.GetAllProduct()/(double)goverment.GetMenCount();
             textBlockaverconsumption.Text = "" + goverment.GetAllConsumption()/ (double)goverment.GetMenCount();
             joblessrate.Text=""+goverment.GetJobless()/ (double)goverment.GetMenCount();
             textBlock_edu_expen.Text = "" + goverment.Getedu();
             textBlock_wel_expen.Text = "" + goverment.Getwel();
             textBlock_tax.Text = "" + goverment.Gettax();
             textBlock_wel_maternal.Text = "" + goverment.GetwelMaternal();
+
         }
 
         public bool CanBeClose = false;

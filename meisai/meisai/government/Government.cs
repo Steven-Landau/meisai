@@ -48,14 +48,33 @@ namespace meisai.government
             
             foreach (Person person in personList)
             {
-           
-                if (person.state.Age < 18)        
+
+                //1、承担一部分学费
+                if (person.state.education.studying)        
                 state.gov_edu_expen+= (int)(AllParameter.bassic_edu_fee *
                         AllParameter.gov_edu_rate *
                         Math.Sqrt(person.state.education.EduLevel));
-              
-            }
+               
+                
+           }
             state.govMoney -= state.gov_edu_expen;
+
+            //2、公共教育->技术进步
+
+            if (state.govMoney>0)
+            {
+                
+                foreach (Person person in personList)
+                {
+                    person.state.education.EduLevel += AllParameter.tech_impro_rate;
+
+                }
+                
+            }
+            state.gov_tech_expen = (int)(state.govMoney * AllParameter.tech_impro_rate);
+            state.govMoney -= state.gov_tech_expen;
+
+
             //再遍历每个人实现个人的改变，包括赚钱等等
             //每个人挣钱
             foreach (Person person in personList)
@@ -231,8 +250,8 @@ namespace meisai.government
                 child.state.education.EduLevel = maleM.state.education.EduLevel +
                     femaleM.state.education.EduLevel;
                 //产假
-                maleM.state.maternalLeave = 1;
-                femaleM.state.maternalLeave = 1;
+                maleM.state.maternalLeave = 0;
+                femaleM.state.maternalLeave = 0;
                 //添加三个人之间的关系
                 child.relationShip.relations.Add(new SingleRelation(
                     PersonRelationType.Father, maleM));
