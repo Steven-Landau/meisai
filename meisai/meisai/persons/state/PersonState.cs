@@ -60,8 +60,8 @@ namespace meisai.persons.state
             RandomGen.getDouble());
         //剩余的产假年数
         public int maternalLeave = 0;
-        //幸福指数
-        public double happiness;
+        //幸福
+        public double happiness=0;
        
 
         public void Die()

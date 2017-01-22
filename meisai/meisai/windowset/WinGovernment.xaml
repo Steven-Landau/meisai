@@ -21,11 +21,11 @@
         <TextBlock x:Name="textBlockavermoney" TextWrapping="Wrap" Margin="297.314,102.345,0,0" HorizontalAlignment="Left" Width="105.093" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top"><Run Text="0"/><LineBreak/><Run/></TextBlock>
         <Label x:Name="label_Copy5" Content="平均资产：" Height="26.133" Margin="225.606,100.091,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="71.708"/>
         <Label x:Name="label_Copy7" Content="失业率" Margin="10,0,0,101.777" Height="26.133" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="63.108"/>
-        <TextBlock x:Name="textBlockaverproduct" TextWrapping="Wrap" Margin="292.146,206.636,0,0" HorizontalAlignment="Left" Width="110.261" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="textBlockaverproduct" TextWrapping="Wrap" Margin="297.314,217.128,0,0" HorizontalAlignment="Left" Width="110.261" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top"><Run Text="0"/><LineBreak/><Run/></TextBlock>
         <TextBlock x:Name="textBlockaverconsumption" TextWrapping="Wrap" Margin="292.146,148.69,0,0" HorizontalAlignment="Left" Width="110.261" Background="#FF5CFCFF" Height="13.866" VerticalAlignment="Top"><Run Text="0"/><LineBreak/><Run/></TextBlock>
         <Label x:Name="label_Copy10" Content="人均消费" Margin="224.11,143.69,0,0" HorizontalAlignment="Left" Width="56.792" Height="24.933" VerticalAlignment="Top"/>
         <TextBlock x:Name="joblessrate" TextWrapping="Wrap" Margin="83.108,0,0,111.777" HorizontalAlignment="Left" Width="110.261" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"><Run Text="0"/><LineBreak/><Run/></TextBlock>
-        <Label x:Name="label_Copy11" Content="人均生产" Margin="223.853,204.382,0,0" Height="24.933" VerticalAlignment="Top" HorizontalAlignment="Left" Width="56.687"/>
+        <Label x:Name="label_Copy11" Content="人均生产" Margin="224.215,208.328,0,0" Height="24.933" VerticalAlignment="Top" HorizontalAlignment="Left" Width="56.687"/>
         <Label x:Name="label_Copy2" Content="政府教育支出" Height="26.133" Margin="10.042,41.133,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="87.066"/>
         <Label x:Name="label_Copy6" Content="政府福利支出" Height="26.133" Margin="10.063,77.412,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="87.066"/>
         <Label x:Name="label_Copy8" Content="政府税收" Margin="10.063,111.291,0,0" HorizontalAlignment="Left" Width="87.066" Height="24.033" VerticalAlignment="Top"/>
@@ -34,6 +34,10 @@
         <TextBlock x:Name="textBlock_tax" TextWrapping="Wrap" Margin="83.108,116.291,0,0" HorizontalAlignment="Left" Width="106.661" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"><Run Text="0"/><LineBreak/><Run/></TextBlock>
         <Label x:Name="label_Copy9" Content="产假支出" Margin="10,0,0,62.31" Height="26.133" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="63.108"/>
         <TextBlock x:Name="textBlock_wel_maternal" TextWrapping="Wrap" Margin="83.108,0,0,72.31" HorizontalAlignment="Left" Width="110.261" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="textBlock_GDP" TextWrapping="Wrap" Margin="79.508,0,0,40.439" HorizontalAlignment="Left" Width="110.261" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+        <Label x:Name="label_Copy12" Content="GDP" Margin="11.4,0,0,34.239" Height="26.133" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="63.108"/>
+        <Label x:Name="label_Copy13" Content="政府幸福" Margin="11.4,0,0,8.106" Height="26.133" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="63.108"/>
+        <TextBlock x:Name="textBlock_govha" TextWrapping="Wrap" Margin="79.508,0,0,14.306" HorizontalAlignment="Left" Width="110.261" Background="#FF5CFCFF" Height="14.933" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"><Run Text="0"/><LineBreak/><Run/></TextBlock>
 
     </Grid>
 </Window>

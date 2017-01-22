@@ -13,9 +13,9 @@ namespace meisai.government.state
         //政府所拥有的资产
         public long govMoney = 0;
         public Int64 allProduct = 0;
-        public double GDPvarience;//国内生产总值和方差
+      //  public double GDPvarience;//国内生产总值和方差
       //  public int GDH;
-        public double GDHvarience;//国内幸福总值和方差
+       // public double GDHvarience;//国内幸福总值和方差
         public long gov_edu_expen=0;//教育总支出
         public long gov_wel_expen=0;//福利总支出
         public long gov_tech_expen = 0;//技术进步总支出
@@ -26,8 +26,10 @@ namespace meisai.government.state
         public int jobless = 0;
         //这一年发的给孩子的基础救助
         public int govChildrenFee = 0;
+        //政府的幸福
+        public double gov_happiness = 0;
 
-        public long
+        
 
     }
 }

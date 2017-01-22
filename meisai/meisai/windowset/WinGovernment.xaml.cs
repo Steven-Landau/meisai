@@ -45,6 +45,8 @@ namespace meisai.windowset
             textBlock_wel_expen.Text = "" + goverment.Getwel();
             textBlock_tax.Text = "" + goverment.Gettax();
             textBlock_wel_maternal.Text = "" + goverment.GetwelMaternal();
+            textBlock_GDP.Text = "" + goverment.GetAllProduct();
+            textBlock_govha.Text = "" + goverment.Getgov_happiness();
 
         }
 

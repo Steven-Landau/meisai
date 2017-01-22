@@ -20,6 +20,7 @@ namespace meisai.persons.money
         //public int welfare = 0;
         public int taxMoney = 0;
         public int productMoney = 0;
+        public int consumeMoney = 0;
         public int welfareMoney = 0;
         public int welfareMaternalLeave = 0;
 
@@ -29,15 +30,22 @@ namespace meisai.persons.money
             //挣钱 + 花钱
             welfareMaternalLeave = 0;
             productMoney = product(state);
+            consumeMoney = consumption(state);
             taxMoney = tax();
             money += productMoney - taxMoney + welfareMoney;
-            money -= consumption(state);
+            money -= consumeMoney;
             if (state.maternalLeave != 0)
             {
                 welfareMaternalLeave = productMoney;
                 productMoney = 0;
                 state.maternalLeave--;
             }
+            //幸福
+            state.happiness = Math.Log(consumeMoney)+
+               Math.Log(money) -
+                (1 - Convert.ToInt16(state.isjobless)) *
+                AllParameter.happiness_index *
+                AllParameter.producttendency(state.race);
         }
         //生产
         public int product(PersonState state, int day = 365)

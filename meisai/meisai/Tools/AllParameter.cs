@@ -49,15 +49,16 @@ namespace meisai.Tools
                 case Race.Lazy:
                     return 1;
             }
-            return 0;
+            return 1;  
         }
         #endregion
-       
-        //对年龄的函数，使用在PersonMoney的生产中
+        
+            //对年龄的函数，使用在PersonMoney的生产中
         public static int productOfAge(int Age)
         {
             double poa;
             poa = 0.1 * Math.Pow(Age, 3.0) / (Math.Exp(0.0806 * Age) - 1);
+            
             return (int)poa;          
         }
        
@@ -175,6 +176,43 @@ namespace meisai.Tools
             return age;
         }
         #endregion
+        #region 幸福
+        //个人幸福指数
+        public static double happiness_index=1;
+        //政府幸福指数
+        public static double gov_happy_index = 1;
+        //求和
+        public static double sum(double[] num)
+        {
+            double sum_=0;
+            foreach(double Num in num)
+            {
+                sum_ += Num;
+            }
+            return sum_;
+        }
+        //求方差
+        public static double standard_deviation(double[] num)
+        {
+            double sd=0;
+            double av=0;
+            double powsum = 0;
+            int count = 0;
+
+            foreach(double Num in num)
+            {
+                av += Num;
+                count++;
+            }
+            av/= count;
+            foreach(double Num in num)
+            {
+                powsum += Num * Num;
+            }
+            sd = Math.Sqrt(-av * av + (powsum / count));
+            return sd;
+        }
+        #endregion
     }
-    
+
 }
