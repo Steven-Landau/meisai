@@ -13,6 +13,7 @@
         <TextBlock x:Name="textBlockyear" Height="14.873" Margin="0,15,70.563,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFD2CFEB" HorizontalAlignment="Right" Width="130.885"><Run Text="0"/><LineBreak/><Run/></TextBlock>
         <Label x:Name="label_Copy1" Content="年" HorizontalAlignment="Right" Height="26.294" Margin="0,10,20.572,0" VerticalAlignment="Top" Width="44.991"/>
         <Button x:Name="buttonstartayear" Content="经过一年" HorizontalAlignment="Left" Height="57.262" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="114.756"/>
+        <Button x:Name="buttonend" Content="恢复初态" HorizontalAlignment="Right" Height="57.262" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="114.756"/>
 
     </Grid>
 </Window>

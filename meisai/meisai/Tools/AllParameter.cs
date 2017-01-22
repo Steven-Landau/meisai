@@ -10,13 +10,17 @@ namespace meisai.Tools
 {
     public static class AllParameter
     {
-        
+        /*
+         * 所有的参数（除了注释掉的和以下列出的）都在SliderControl里面可以更改
+         * 
+         */
         //基础消费
         public static int basicconsumption = 5000;
         //孩子的单方基本消费
         public static int childbasicconsumption = 2500;
         //退休年龄
         public static int retireage = 60;
+        //毕业年龄
         public static int graduateage = 18;
         ////基础死亡率，只要是个人就会有这么大概率死
         //public static double basicdeathrate = 0.008;

@@ -29,10 +29,10 @@ namespace meisai
         bool ageDistributionOnOff = true;
         bool locationDistributionOnOff = true;
         #endregion
-        Government government;
-        WinGovernment winGovernment;
-        AgeDistribution ageDistribution;
-        LocationDistribution locationDistribution;
+        Government government = null;
+        WinGovernment winGovernment = null;
+        AgeDistribution ageDistribution = null;
+        LocationDistribution locationDistribution = null;
         GovernmentControl governmentControl;
         int nowDay = 0;
 
@@ -42,6 +42,56 @@ namespace meisai
             this.Left = 0;
             this.Top = 300;
             InitializeComponent();
+            InitWindowSet();
+            governmentControl = new GovernmentControl();
+            governmentControl.Show();
+            Refresh();
+            buttonstartayear.Click += Buttonstartayear_Click;
+            buttonend.Click += Buttonend_Click;
+            //MathematicaOut.Out("test", "A", new String[] { "a", "b" });
+        }
+
+        private void Buttonend_Click(object sender, RoutedEventArgs e)
+        {
+            nowDay = 0;
+            CloseWindowSet();
+            InitWindowSet();
+            Refresh();
+            MessageBox.Show("重新开始了！");
+        }
+
+        private void Refresh()
+        {
+            textBlockday.Text = "" + nowDay;
+            textBlockyear.Text = "" + (nowDay / 365);
+
+            if (winGovernmentOnOff) winGovernment.Refresh();
+            if (ageDistributionOnOff) ageDistribution.Refresh();
+            if (locationDistributionOnOff) locationDistribution.Refresh();
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            CloseWindowSet();
+            governmentControl.CanBeClose = true;
+            governmentControl.Close();
+            base.OnClosing(e);
+        }
+
+        private void deltaTAfter(int day = 365)
+        {
+            nowDay += day;
+            government.deltaTAfter(day);
+            Refresh();
+        }
+
+        private void Buttonstartayear_Click(object sender, RoutedEventArgs e)
+        {
+            deltaTAfter(365);
+        }
+
+        private void InitWindowSet()
+        {
             RandomGen.Initiate();
             government = new Government();
             if (winGovernmentOnOff)
@@ -59,22 +109,9 @@ namespace meisai
                 locationDistribution = new LocationDistribution(government);
                 locationDistribution.Show();
             }
-            governmentControl = new GovernmentControl();
-            governmentControl.Show();
-            buttonstartayear.Click += Buttonstartayear_Click;
-            MathematicaOut.Out("test", "A", new String[] { "a", "b" });
-        }
-        private void Refresh()
-        {
-            textBlockday.Text = "" + nowDay;
-            textBlockyear.Text = "" + (nowDay / 365);
-
-            if (winGovernmentOnOff) winGovernment.Refresh();
-            if (ageDistributionOnOff) ageDistribution.Refresh();
-            if (locationDistributionOnOff) locationDistribution.Refresh();
         }
 
-        protected override void OnClosing(CancelEventArgs e)
+        private void CloseWindowSet()
         {
             if (winGovernmentOnOff)
             {
@@ -91,23 +128,6 @@ namespace meisai
                 locationDistribution.CanBeClose = true;
                 locationDistribution.Close();
             }
-            governmentControl.CanBeClose = true;
-            governmentControl.Close();
-            base.OnClosing(e);
-        }
-
-        private void deltaTAfter(int day = 365)
-        {
-            nowDay += day;
-            government.deltaTAfter(day);
-
-
-            Refresh();
-        }
-
-        private void Buttonstartayear_Click(object sender, RoutedEventArgs e)
-        {
-            deltaTAfter(365);
         }
     }
 }

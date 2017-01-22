@@ -14,15 +14,18 @@ namespace meisai.government
 {
     public class Government
     {
-        static List<Person> personList = new List<Person>();
-        GovernmentState state = new GovernmentState();
+        static List<Person> personList;
+        GovernmentState state;
         //年龄分布，从0岁到99岁
-        public double[] ageDistrib = new double[AllParameter.MaxAge];
+        public double[] ageDistrib;
         public Point[] positions;
         public List<IntPair> relationship;
 
         public Government()
         {//初态
+            personList = new List<Person>();
+            ageDistrib = new double[AllParameter.MaxAge];
+            state = new GovernmentState();
             state.govMoney = 1000*10000;
             for (int i = 0; i < 10000; i++)
             {
@@ -36,6 +39,7 @@ namespace meisai.government
                 //personList[i].state.Age = 18 + (36 * (i-5000)) / 10000;
                 personList[i].state.Age = AllParameter.GetAge();
             }
+            refreshStates();
         }
         public void deltaTAfter(int day = 365)
         {
@@ -97,6 +101,11 @@ namespace meisai.government
             //婚恋生子
             marriage();
 
+            //统计新的状态
+            refreshStates();
+        }
+        private void refreshStates()
+        {
             //统计新的状态
             sumUpStates();
             getAgeAttribution();
