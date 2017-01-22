@@ -100,7 +100,15 @@ namespace meisai.government
             updatepositions();
             //婚恋生子
             marriage();
-
+            //计算幸福
+            // public double[] ageDistrib = new double[AllParameter.MaxAge];
+            double[] happy = new double[personList.Count];
+            for (int i = 0; i < personList.Count; i++)
+            {
+                happy[i] = personList[i].state.happiness;
+            }
+            state.gov_happiness = AllParameter.sum(happy) / personList.Count -
+                AllParameter.standard_deviation(happy) * AllParameter.gov_happy_index;
             //统计新的状态
             refreshStates();
         }
