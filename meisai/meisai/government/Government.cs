@@ -31,12 +31,13 @@ namespace meisai.government
             {
                 personList.Add(new Person());
             }        
-            //平均年龄分布
+           
             for(int i=0;i<10000;i++)
             {
                 personList[i].state.gender = (Gender)(i / 5000);
-                personList[i].state.race = (Race)(i / 5000);
-                //personList[i].state.Age = 18 + (36 * (i-5000)) / 10000;
+                personList[i].state.race = (Race)(i /5000);
+               // personList[i].state.race = i < 3333 ? Race.Lazy : Race.Creative;
+                // personList[i].state.Age = 25;
                 personList[i].state.Age = AllParameter.GetAge();
             }
             refreshStates();
@@ -244,10 +245,11 @@ namespace meisai.government
                     femaleM.state.position.Y) / 2;
                 child.state.gender = (RandomGen.getDouble() > 0.5) ? 
                     Gender.Female : Gender.Male;
-                child.state.IQ = maleM.state.IQ + femaleM.state.IQ;
+                child.state.IQ = (maleM.state.IQ + femaleM.state.IQ)-0.5
+                    +0.5*RandomGen.getDouble();
                 child.state.race = maleM.state.race;
-                child.state.education.EduLevel = maleM.state.education.EduLevel +
-                    femaleM.state.education.EduLevel;
+                child.state.education.EduLevel =(maleM.state.education.EduLevel +
+                    femaleM.state.education.EduLevel)/2;
                 //产假
                 maleM.state.maternalLeave = 0;
                 femaleM.state.maternalLeave = 0;
@@ -283,8 +285,8 @@ namespace meisai.government
         public void SaveOnYear()
         {
             MathematicaOut.AppendYearData(MathematicaOut.WriteToList(new String[] {
-                t(MainWindow.nowDay/365), t(state.allMoney), t(state.govMoney),
-                t(state.allProduct), t(state.GDPvarience), t(state.GDHvarience),
+                t(MainWindow.nowDay/365),t(personList.Count),t(state.allMoney), t(state.govMoney),
+                t(state.allProduct), t(state.gov_happiness), 
                 t(state.gov_edu_expen), t(state.gov_wel_expen),
                 t(state.gov_wel_maternal_expen), t(state.gov_tax),
                 t(state.allConsumption), t(state.jobless), t(state.govChildrenFee),
@@ -300,8 +302,8 @@ namespace meisai.government
         //这里是所有输出的名字列表，可以在mathematica里通过key_<名字>来代表下标
         //比如数组是A，则调用年份用A[key_year]来调用
         public static String[] savedName = new String[] {
-            "year", "allMoney", "govMoney", "allProduct", "GDPvarience",
-            "GDHvarience", "goveduexpen", "govwelexpen", "govwelmaternalexpen",
+            "year", "population","allMoney", "govMoney", "allProduct", "govhappiness",
+            "goveduexpen", "govwelexpen", "govwelmaternalexpen",
             "govtax", "allConsumption", "jobless", "govChildrenFee",
             "ageDistrib"};
     }

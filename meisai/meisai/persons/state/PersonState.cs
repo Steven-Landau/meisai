@@ -88,12 +88,12 @@ namespace meisai.persons.state
 
     }
     public enum Gender {Male, Female }
-    public enum Race { Creative, Lazy }
+    public enum Race { Creative, Lazy,   }
     //技能状态，包括技能水平和类型等
     public class PersonEducation
     {
         //教育水平
-        public double EduLevel = 1;
+        public double EduLevel = 10;
         public bool studying = true;
 
         public void getstudydeltaT(int day)

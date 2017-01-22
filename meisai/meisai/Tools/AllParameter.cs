@@ -37,7 +37,7 @@ namespace meisai.Tools
         public static double tech_impro_rate = 0.2;
         #region 挣钱
         //失业最低工资
-        public static int minimumwage = 5000;
+        public static int minimumwage = 10000;
         
         //工资——智商系数
         public static double IQproductparameter = 0.4;
@@ -138,7 +138,7 @@ namespace meisai.Tools
         public static int MaxAge = 200;
         #endregion
         #region 婚姻生子
-        public static double marriageRate = 0.05;
+        public static double marriageRate = 0.0015;
         public static int minMarriageAge = 20;
         public static int maxMarriageAge = 40;
         public static bool ifWillMarriage(double Lsquare)
