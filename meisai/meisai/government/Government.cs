@@ -108,7 +108,8 @@ namespace meisai.government
                 happy[i] = personList[i].state.happiness;
             }
             state.gov_happiness = AllParameter.sum(happy) / personList.Count -
-                AllParameter.standard_deviation(happy) * AllParameter.gov_happy_index;
+             AllParameter.standard_deviation(happy) * 
+             AllParameter.gov_happy_index;
             //统计新的状态
             refreshStates();
         }
